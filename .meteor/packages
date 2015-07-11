@@ -7,13 +7,13 @@
 meteor-platform
 autopublish
 insecure
+less
+nemo64:bootstrap
 iron:router
-twbs:bootstrap
 zimme:active-route
 ian:accounts-ui-bootstrap-3
 accounts-password
 accounts-github
-less
 aldeed:tabular
 aldeed:simple-schema
 fortawesome:fontawesome

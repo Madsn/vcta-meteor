@@ -1,4 +1,5 @@
 Players = new Meteor.Collection('players');
+Trips = new Meteor.Collection('trips');
 /* // For orion
   singularName: 'player',
   pluralName: 'players',

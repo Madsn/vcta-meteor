@@ -31,6 +31,7 @@
           <i class="glyphicon glyphicon-plus"></i> Add a new trip
         </button>
       </div>
+      {{> tabular table=TabularTables.Trips class="table table-striped table-hover" search=false}}
     </div>
   </div>
 </template>
@@ -39,7 +40,28 @@
   <div class="panel panel-default">
     {{> panel_heading title="My stats"}}
     <div class="panel-body">
-      TODO
+      <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Username</td>
+            <td>{{username}}</td>
+          </tr>
+          <tr>
+            <td>Total distance</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Cycling days</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Team</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
