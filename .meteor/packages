@@ -14,3 +14,7 @@ ian:accounts-ui-bootstrap-3
 accounts-password
 less
 aldeed:tabular
+aldeed:simple-schema
+orionjs:core
+fortawesome:fontawesome
+orionjs:bootstrap
