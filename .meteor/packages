@@ -12,3 +12,5 @@ iron:router
 twbs:bootstrap
 jquery
 zimme:active-route
+ian:accounts-ui-bootstrap-3
+accounts-password
