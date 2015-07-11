@@ -12,10 +12,10 @@ twbs:bootstrap
 zimme:active-route
 ian:accounts-ui-bootstrap-3
 accounts-password
+accounts-github
 less
 aldeed:tabular
 aldeed:simple-schema
-orionjs:core
 fortawesome:fontawesome
-orionjs:bootstrap
-accounts-github
+aldeed:autoform
+aldeed:collection2

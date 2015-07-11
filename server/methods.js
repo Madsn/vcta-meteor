@@ -1,8 +1,6 @@
 Meteor.methods({
   deleteCurrentUser: function() {
-    console.log(Meteor.userId());
-    var userId = Meteor.user()._id;
-    console.log(userId);
+    var userId = Meteor.userId();
     Meteor.logout;
     Meteor.users.remove(userId);
   }

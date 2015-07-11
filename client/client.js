@@ -7,4 +7,11 @@ Template.editprofile.events({
     Meteor.call('deleteCurrentUser');
     Router.go('dashboard');
   }
-})
+});
+
+Template.editprofile.helpers({
+  getCurrentUser: function() {
+    console.log(Meteor.user());
+    return Meteor.user();
+  }
+});
