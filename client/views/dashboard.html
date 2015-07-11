@@ -1,10 +1,10 @@
 <template name="dashboard">
+  <div class="page-header">
+    <h2>
+      Dashboard
+    </h2>
+  </div>
   {{#if currentUser}}
-    <div class="page-header">
-      <h2>
-        Dashboard
-      </h2>
-    </div>
     <div class="row">
       <div class="col-md-5">
         {{> _dash_stats}}
@@ -15,10 +15,7 @@
     </div>
   {{/if}}
   {{#unless currentUser}}
-    <div class="page-header">
-      <h2>Not logged in</h2>
-    </div>
-    <p>Please log in to access the dashboard</p>
+    {{> notLoggedIn}}
   {{/unless}}
 </template>
 

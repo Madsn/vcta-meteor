@@ -2,20 +2,19 @@
   <div class="page-header">
     <h2>Manage account</h2>
   </div>
+  {{#if currentUser}}
   <div class="row">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Edit profile</h3>
-      </div>
+      {{> panel_heading title="Edit profile"}}
       <div class="panel-body">
         {{#autoForm collection="Meteor.users" doc=getCurrentUser id="usersForm" type="update"}}
           <fieldset>
-            {{> afQuickField name='username'}}
+            {{> afQuickField name="username"}}
             <div class="form-group{{#if afFieldIsInvalid name='emails.0.address'}} has-error{{/if}}">
               <label for="email">Email</label>
-              {{> afFieldInput name='emails.0.address' id='email'}}
-              {{#if afFieldIsInvalid name='emails.0.address'}}
-                <span class="help-block">{{afFieldMessage name='emails.0.address'}}</span>
+              {{> afFieldInput name="emails.0.address" id="email"}}
+              {{#if afFieldIsInvalid name="emails.0.address"}}
+                <span class="help-block">{{afFieldMessage name="emails.0.address"}}</span>
               {{/if}}
             </div>
           </fieldset>
@@ -26,12 +25,14 @@
   </div>
   <div class="row">
     <div class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title">Danger zone</h3>
-      </div>
+      {{> panel_heading title="Danger zone"}}
       <div class="panel-body text-center">
         <a type="submit" id="deleteAccountBtn" class="btn btn-danger">Delete account</a>
       </div>
     </div>
   </div>
+  {{/if}}
+  {{#unless currentUser}}
+    {{> notLoggedIn}}
+  {{/unless}}
 </template>

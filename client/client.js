@@ -6,10 +6,6 @@ Template.manageaccount.events({
   'click #deleteAccountBtn': function(){
     Meteor.call('deleteAccount');
     Router.go('dashboard');
-  },
-  'submit #changePasswordForm': function(event){
-    console.log('Changing password');
-    Accounts.changePassword(event.target.oldPassword, event.target.newPassword);
   }
 });
 
