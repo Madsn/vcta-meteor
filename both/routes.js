@@ -1,14 +1,10 @@
-Router.route('/', function(){
-  this.render('dashboard');
-});
-
-Router.route('/rules', function(){
-  this.render('rules');
-});
-
-Router.route('/scoreboard', function(){
-  this.render('scoreboard');
-});
+Router.map(function() {
+  this.route('dashboard', {
+    path: '/'
+  });
+  this.route('rules');
+  this.route('scoreboard');
+})
 
 Router.configure({
   layoutTemplate: 'layout'

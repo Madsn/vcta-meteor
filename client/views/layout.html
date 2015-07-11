@@ -16,7 +16,7 @@
           </div>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-              <li class="{{isActivePath '/'}}"><a href="/">Home</a></li>
+              <li class="{{isActivePath '/'}} {{isUserLoggedIn}}"><a href="/">Dashboard</a></li>
               <li class="{{isActiveRoute 'scoreboard'}}"><a href="/scoreboard">Scoreboard</a></li>
               <li class="{{isActiveRoute 'rules'}}"><a href="/rules">Rules</a></li>
             </ul>
