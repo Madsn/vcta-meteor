@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">
               <li class="{{isActivePath '/'}}"><a href="/">Home</a></li>
               <li class="{{isActiveRoute 'page1'}}"><a href="/page1">Page1</a></li>
-              <li class="{{isActiveRoute 'page2'}}"><a href="/page2">Page2</a></li>
+              <li class="{{isActiveRoute 'scoreboard'}}"><a href="/scoreboard">Scoreboard</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">{{> loginButtons}}</ul>
           </div>
@@ -46,8 +46,9 @@
 	<h1>Page 1</h1>
 </template>
 
-<template name="page2">
-	<h1>Page 2</h1>
+<template name="scoreboard">
+	<h1>Scoreboard</h1>
+  {{> tabular table=TabularTables.Players class="table table-striped table-hover"}}
 </template>
 
 <template name="home">

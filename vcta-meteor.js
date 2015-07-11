@@ -1,11 +1,14 @@
 if (Meteor.isClient) {
+  Template.scoreboard.helpers({
+    players: function() {
+      return [
+        {name: 'Player1'},
+        {name: 'Player2'}
+      ];
+    }
+  })
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
 
 Router.route('/', function(){
   this.render('home');
@@ -15,8 +18,8 @@ Router.route('/page1', function(){
   this.render('page1');
 });
 
-Router.route('/page2', function(){
-  this.render('page2');
+Router.route('/scoreboard', function(){
+  this.render('scoreboard');
 });
 
 Router.configure({
