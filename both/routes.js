@@ -1,5 +1,5 @@
 Router.route('/', function(){
-  this.render('home');
+  this.render('dashboard');
 });
 
 Router.route('/rules', function(){
