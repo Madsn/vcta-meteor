@@ -5,7 +5,6 @@ Accounts.ui.config({
 Template.manageaccount.events({
   'click #deleteAccountBtn': function(){
     Meteor.call('deleteAccount');
-    Router.go('dashboard');
   }
 });
 
