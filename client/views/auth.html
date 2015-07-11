@@ -1,3 +1,17 @@
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
-    <a class="btn btn-default btn-block" id="login-buttons-edit-profile" href="/editprofile">Edit profile</a>
+    <a class="btn btn-default btn-block" id="login-buttons-edit-profile" href="/manageaccount">Manage account</a>
+</template>
+
+<template name="custom_loginButtonsLoggedInDropdownActions">
+  {{#if additionalLoggedInDropdownActions}}
+    {{> _loginButtonsAdditionalLoggedInDropdownActions}}
+  {{/if}}
+
+<!--
+  {{#if allowChangingPassword}}
+    <button class="btn btn-default btn-block" id="login-buttons-open-change-password">{{i18n 'loginButtonsLoggedInDropdownActions.password'}}</button>
+  {{/if}}
+-->
+
+  <button class="btn btn-block btn-primary" id="login-buttons-logout">{{i18n 'loginButtonsLoggedInDropdownActions.signOut'}}</button>
 </template>

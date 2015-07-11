@@ -4,7 +4,7 @@ Router.map(function() {
   });
   this.route('rules');
   this.route('scoreboard');
-  this.route('editprofile');
+  this.route('manageaccount');
 })
 
 Router.configure({
