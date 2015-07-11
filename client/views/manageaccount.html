@@ -8,33 +8,19 @@
         <h3 class="panel-title">Edit profile</h3>
       </div>
       <div class="panel-body">
-        <div class="col-md-6">
-          {{#autoForm collection="Meteor.users" doc=getCurrentUser id="usersForm" type="update"}}
-            <fieldset>
-              {{> afQuickField name='username'}}
-              <div class="form-group">
-                <label for="email">Email</label>
-                {{> afFieldInput name='emails.0.address' id='email'}}
-              </div>
-            </fieldset>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
-          {{/autoForm}}
-        </div>
-        <div class="col-md-6">
-        <form id="changePasswordForm">
+        {{#autoForm collection="Meteor.users" doc=getCurrentUser id="usersForm" type="update"}}
           <fieldset>
-            <div class="form-group">
-              <label for="oldPassword">Current password</label>
-              <input type="password" id="oldPassword" class="form-control" placeholder="Current password"/>
-            </div>
-            <div class="form-group">
-              <label for="newPassword">New password</label>
-              <input type="password" id="newPassword" class="form-control" placeholder="New password"/>
+            {{> afQuickField name='username'}}
+            <div class="form-group{{#if afFieldIsInvalid name='emails.0.address'}} has-error{{/if}}">
+              <label for="email">Email</label>
+              {{> afFieldInput name='emails.0.address' id='email'}}
+              {{#if afFieldIsInvalid name='emails.0.address'}}
+                <span class="help-block">{{afFieldMessage name='emails.0.address'}}</span>
+              {{/if}}
             </div>
           </fieldset>
-          <button type="submit" class="btn btn-primary pull-right">Change password</button>
-        </form>
-        </div>
+          <button type="submit" class="btn btn-primary pull-right">Update</button>
+        {{/autoForm}}
       </div>
     </div>
   </div>

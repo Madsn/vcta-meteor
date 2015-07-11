@@ -7,11 +7,9 @@
     {{> _loginButtonsAdditionalLoggedInDropdownActions}}
   {{/if}}
 
-<!--
-  {{#if allowChangingPassword}}
+  {{#unless currentUser.services.google}}
     <button class="btn btn-default btn-block" id="login-buttons-open-change-password">{{i18n 'loginButtonsLoggedInDropdownActions.password'}}</button>
-  {{/if}}
--->
+  {{/unless}}
 
   <button class="btn btn-block btn-primary" id="login-buttons-logout">{{i18n 'loginButtonsLoggedInDropdownActions.signOut'}}</button>
 </template>

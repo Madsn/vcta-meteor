@@ -15,20 +15,23 @@ Trips = new Meteor.Collection('trips');
 */
 
 Schema = {};
+
 Schema.User = new SimpleSchema({
     username: {
       type: String,
-      regEx: /^[a-z0-9A-Z_]{3,15}$/
+      regEx: /^([a-z0-9A-Z_]{1,20}\s?)+$/,
+      optional: false
     },
     emails: {
       type: [Object],
       // this must be optional if you also use other login services like facebook,
       // but if you use only accounts-password, then it can be required
-      optional: true
+      optional: false
     },
     "emails.$.address": {
       type: String,
-      regEx: SimpleSchema.RegEx.Email
+      regEx: SimpleSchema.RegEx.Email,
+      optional: false
     },
     "emails.$.verified": {
       type: Boolean,
@@ -56,6 +59,3 @@ Schema.User = new SimpleSchema({
 
 Meteor.users.attachSchema(Schema.User);
 
-if (Meteor.isClient){
-  SimpleSchema.debug = true;
-}

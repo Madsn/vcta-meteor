@@ -4,7 +4,7 @@ Accounts.ui.config({
 
 Template.manageaccount.events({
   'click #deleteAccountBtn': function(){
-    Meteor.call('deleteCurrentUser');
+    Meteor.call('deleteAccount');
     Router.go('dashboard');
   },
   'submit #changePasswordForm': function(event){
