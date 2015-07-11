@@ -1,19 +1,4 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
 }
 
 if (Meteor.isServer) {
@@ -21,3 +6,19 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Router.route('/', function(){
+  this.render('home');
+});
+
+Router.route('/page1', function(){
+  this.render('page1');
+});
+
+Router.route('/page2', function(){
+  this.render('page2');
+});
+
+Router.configure({
+  layoutTemplate: 'layout'
+});

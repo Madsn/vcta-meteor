@@ -7,3 +7,8 @@
 meteor-platform
 autopublish
 insecure
+fezvrasta:bootstrap-material-design
+iron:router
+twbs:bootstrap
+jquery
+zimme:active-route
