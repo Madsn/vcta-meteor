@@ -1,25 +1,12 @@
 Trips = new Meteor.Collection('trips');
 Teams = new Meteor.Collection('teams');
-/* // For orion
-  singularName: 'player',
-  pluralName: 'players',
-  link: {
-    title: 'Players'
-  },
-  tabular: {
-    columns: [
-      { data: 'name', title: 'Name' }
-    ]
-  }
-});
-*/
 
 Schema = {};
 
 Schema.User = new SimpleSchema({
     username: {
       type: String,
-      regEx: /^([a-z0-9A-Z_]{1,20}\s?)+$/,
+      regEx: /^([a-z0-9A-Z_]{1,20}\s?){1,4}$/,
       optional: false
     },
     emails: {
@@ -97,3 +84,26 @@ Schema.Trips = new SimpleSchema({
 });
 
 Trips.attachSchema(Schema.Trips);
+
+Schema.Teams = new SimpleSchema({
+  name: {
+    type: String,
+    optional: false,
+    unique: true,
+    regEx: /^([a-z0-9A-Z_]{1,20}\s?){1,4}$/,
+  },
+  captain: {
+    type: String,
+    optional: false,
+    autoValue: function() {
+      return Meteor.user().username;
+    },
+    custom: function() {
+      if (Meteor.user().team !== null) {
+        return 'Not permitted, user already belongs to a team';
+      }
+    }
+  }
+});
+
+Teams.attachSchema(Schema.Teams);

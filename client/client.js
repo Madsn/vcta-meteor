@@ -14,13 +14,10 @@ Template.manageaccount.helpers({
   }
 });
 
-Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
-
-AutoForm.hooks({
-  addTripForm: {
-    onSubmit: function(insertDoc) {
-      insertDoc.date.setHours(0,0,0,0);
-      return true;
-    }
+Template.dashboard.helpers({
+  userInTeam: function() {
+    return Meteor.user().team === null ? false : true;
   }
 });
+
+Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');

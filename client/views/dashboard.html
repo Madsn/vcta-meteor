@@ -10,6 +10,13 @@
         {{> _dash_stats}}
       </div>
       <div class="col-md-7">
+        {{#if userAlreadyInTeam}}
+          {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
+            <fieldset>
+              {{> afQuickField name="name"}}
+            </fieldset>
+          {{/autoForm}}
+        {{/if}}
         {{> _dash_trips}}
       </div>
     </div>

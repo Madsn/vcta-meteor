@@ -13,3 +13,7 @@ Accounts.onCreateUser(function(options, user) {
   }
   return user;
 });
+
+Teams.before.insert(function (userId, doc) {
+  Meteor.users.update({_id: userId}, {$set: {team: doc.name}});
+});
