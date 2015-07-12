@@ -24,7 +24,8 @@ TabularTables.Trips = new Tabular.Table({
     { data: 'date', title: 'Day', searchable: false },
     { data: 'distance', title: 'Distance', searchable: false }
   ],
-  paging: false,
+  lengthMenu: [[50, -1], [50, "All"]],
+  paging: true,
   searching: false,
   info: false,
   language: {

@@ -59,3 +59,37 @@ Schema.User = new SimpleSchema({
 
 Meteor.users.attachSchema(Schema.User);
 
+Schema.Trips = new SimpleSchema({
+  userId: {
+    type: String,
+    optional: false,
+    autoValue: function() {
+      return Meteor.user()._id;
+    }
+  },
+  date: {
+    type: Date,
+    optional: false,
+    min: new Date(2015, 7, 2),
+    max: new Date(2015, 7, 32),
+    autoform: {
+      afFieldInput: {
+        type: "bootstrap-datepicker",
+        datePickerOptions: {
+          format: "dd/mm/yyyy",
+          weekStart: 1,
+          autoclose: true
+        }
+      }
+    }
+  },
+  distance: {
+    type: Number,
+    optional: false,
+    decimal: true,
+    min: 0,
+    max: 350
+  }
+});
+
+Trips.attachSchema(Schema.Trips);
