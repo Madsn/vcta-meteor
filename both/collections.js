@@ -1,5 +1,5 @@
-Players = new Meteor.Collection('players');
 Trips = new Meteor.Collection('trips');
+Teams = new Meteor.Collection('teams');
 /* // For orion
   singularName: 'player',
   pluralName: 'players',
@@ -27,6 +27,10 @@ Schema.User = new SimpleSchema({
       // this must be optional if you also use other login services like facebook,
       // but if you use only accounts-password, then it can be required
       optional: false
+    },
+    team: {
+      type: String,
+      optional: true
     },
     "emails.$.address": {
       type: String,

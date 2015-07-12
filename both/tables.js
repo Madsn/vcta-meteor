@@ -4,12 +4,26 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
 TabularTables.Players = new Tabular.Table({
   name: 'PlayerList',
-  collection: Players,
+  collection: Meteor.users,
   columns: [
-    { data: 'name', title: 'Name' }
+    { data: 'username', title: 'Name',
+      render: function(val) {
+        return '<a href="/user/' + val + '">' + val + '</a>';
+      }
+    },
+    { data: 'team', title: 'Team',
+      render: function(val) {
+        if (!val) {
+          return '';
+        }
+        return '<a href="/team/' + val + '">' + val + '</a>';
+      }
+    }
+    //{ data: 'cyclingDays', title: 'Cycling days' },
+    //{ data: 'distance', title: 'Distance' }
   ],
   paging: true,
-  iDisplayLength: 50,
+  lengthMenu: [[50, -1], [50, "All"]],
   searching: true,
   info: false,
   language: {
@@ -23,13 +37,12 @@ TabularTables.Trips = new Tabular.Table({
   columns: [
     { data: 'date', title: 'Day', searchable: false,
       render: function(val) {
-        console.log('formatting');
         return moment(val).format('DD MMMM');
       }
     },
     { data: 'distance', title: 'Distance', searchable: false,
       render: function(val) {
-        return val + " km";
+        return val + ' km';
       }
     }
   ],
