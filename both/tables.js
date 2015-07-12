@@ -21,8 +21,17 @@ TabularTables.Trips = new Tabular.Table({
   name: 'TripsList',
   collection: Trips,
   columns: [
-    { data: 'date', title: 'Day', searchable: false },
-    { data: 'distance', title: 'Distance', searchable: false }
+    { data: 'date', title: 'Day', searchable: false,
+      render: function(val) {
+        console.log('formatting');
+        return moment(val).format('DD MMMM');
+      }
+    },
+    { data: 'distance', title: 'Distance', searchable: false,
+      render: function(val) {
+        return val + " km";
+      }
+    }
   ],
   lengthMenu: [[50, -1], [50, "All"]],
   paging: true,
