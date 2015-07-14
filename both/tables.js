@@ -11,7 +11,7 @@ TabularTables.Players = new Tabular.Table({
         return '<a href="/user/' + val + '">' + val + '</a>';
       }
     },
-    { data: 'team', title: 'Team',
+    { data: 'getTeamName()', title: 'Team',
       render: function(val) {
         if (!val) {
           return '';

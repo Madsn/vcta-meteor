@@ -15,7 +15,7 @@ Schema.User = new SimpleSchema({
       // but if you use only accounts-password, then it can be required
       optional: false
     },
-    team: {
+    teamId: {
       type: String,
       optional: true
     },
@@ -92,14 +92,14 @@ Schema.Teams = new SimpleSchema({
     unique: true,
     regEx: /^([a-z0-9A-Z_]{1,20}\s?){1,4}$/,
   },
-  captain: {
+  captainUserId: {
     type: String,
     optional: false,
     autoValue: function() {
-      return Meteor.user().username;
+      return Meteor.user()._id;
     },
     custom: function() {
-      if (Meteor.user().team !== null) {
+      if (Meteor.user().team !== undefined) {
         return 'Not permitted, user already belongs to a team';
       }
     }
@@ -107,3 +107,21 @@ Schema.Teams = new SimpleSchema({
 });
 
 Teams.attachSchema(Schema.Teams);
+
+Meteor.users.helpers({
+  getTeamName: function() {
+    // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
+    var teamId = Meteor.user().teamId;
+    if (!teamId) return '';
+    var team = Teams.findOne(teamId);
+    return team ? team.name : '';
+  }
+});
+
+Teams.helpers({
+  getCaptainName: function() {
+    // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
+    var user = Meteor.users.findOne(this.captainUserId);
+    return user.username;
+  }
+});

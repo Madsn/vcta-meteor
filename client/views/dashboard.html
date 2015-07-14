@@ -10,7 +10,7 @@
         {{> _dash_stats}}
       </div>
       <div class="col-md-7">
-        {{#if userAlreadyInTeam}}
+        {{#if userInTeam}}
           {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
             <fieldset>
               {{> afQuickField name="name"}}

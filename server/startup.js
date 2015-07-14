@@ -1,8 +1,6 @@
-if (Meteor.isServer) {
-  Meteor.startup(function () {
+Meteor.startup(function () {
 
-  });
-}
+});
 
 Accounts.onCreateUser(function(options, user) {
   if (options.profile) {
@@ -14,6 +12,12 @@ Accounts.onCreateUser(function(options, user) {
   return user;
 });
 
-Teams.before.insert(function (userId, doc) {
-  Meteor.users.update({_id: userId}, {$set: {team: doc.name}});
+Teams.after.insert(function (userId, doc) {
+  Meteor.users.update(userId, {$set: {teamId: this._id}});
+});
+
+Meteor.publish('userData', function() {
+  return Meteor.users.find(this.userId, {fields: {
+    teamId: 1,
+  }});
 });

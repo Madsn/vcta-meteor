@@ -13,6 +13,7 @@ Router.map(function() {
     path: '/user/:username',
     data: function() {
       var user = Meteor.users.findOne({username: this.params.username})
+      console.log(user);
       return user;
     }
   });

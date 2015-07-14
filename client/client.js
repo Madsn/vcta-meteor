@@ -21,3 +21,7 @@ Template.dashboard.helpers({
 });
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
+
+Deps.autorun(function(){
+  Meteor.subscribe('userData');
+});
