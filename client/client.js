@@ -15,10 +15,13 @@ Template.manageaccount.helpers({
 });
 
 Template.dashboard.helpers({
-  userInTeam: function() {
-    return Meteor.user().teamId === undefined || Meteor.user().teamId === '' ? false : true;
-  }
 });
+
+Template._team_management.events({
+  'click #deleteTeamBtn': function(){
+    Meteor.call('deleteTeam');
+  }
+})
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
 

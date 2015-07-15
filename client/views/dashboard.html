@@ -10,17 +10,8 @@
         {{> _dash_stats}}
       </div>
       <div class="col-md-7">
-        {{#unless userInTeam}}
-          <div class="row">
-            {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
-              <fieldset>
-                {{> afFormGroup name="name"}}
-              </fieldset>
-            {{/autoForm}}
-          </div>
-        {{/unless}}
-        <div class="row">
-
+        <div id="team-management" class="row">
+          {{> _team_management }}
         </div>
         <div class="row">
           {{> _dash_trips}}
@@ -30,6 +21,25 @@
   {{/if}}
   {{#unless currentUser}}
     {{> notLoggedIn}}
+  {{/unless}}
+</template>
+
+<template name="_team_management">
+  {{#if currentUser.isCaptain}}
+    <p>User is captain</p>
+    <input id="deleteTeamBtn" type="button" class="btn btn-danger" value="Delete team"/>
+  {{/if}}
+
+  {{#if currentUser.hasTeam}}
+    <p>User is member of a team</p>
+  {{/if}}
+
+  {{#unless currentUser.hasTeam}}
+    {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
+      <fieldset>
+        {{> afFormGroup name="name"}}
+      </fieldset>
+    {{/autoForm}}
   {{/unless}}
 </template>
 
