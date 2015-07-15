@@ -10,14 +10,21 @@
         {{> _dash_stats}}
       </div>
       <div class="col-md-7">
-        {{#if userInTeam}}
-          {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
-            <fieldset>
-              {{> afFormGroup name="name"}}
-            </fieldset>
-          {{/autoForm}}
-        {{/if}}
-        {{> _dash_trips}}
+        {{#unless userInTeam}}
+          <div class="row">
+            {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
+              <fieldset>
+                {{> afFormGroup name="name"}}
+              </fieldset>
+            {{/autoForm}}
+          </div>
+        {{/unless}}
+        <div class="row">
+
+        </div>
+        <div class="row">
+          {{> _dash_trips}}
+        </div>
       </div>
     </div>
   {{/if}}

@@ -16,7 +16,7 @@ Template.manageaccount.helpers({
 
 Template.dashboard.helpers({
   userInTeam: function() {
-    return Meteor.user().team === null ? false : true;
+    return Meteor.user().teamId === undefined || Meteor.user().teamId === '' ? false : true;
   }
 });
 
