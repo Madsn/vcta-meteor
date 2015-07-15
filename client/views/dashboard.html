@@ -13,7 +13,7 @@
         {{#if userInTeam}}
           {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
             <fieldset>
-              {{> afQuickField name="name"}}
+              {{> afFormGroup name="name"}}
             </fieldset>
           {{/autoForm}}
         {{/if}}
@@ -33,8 +33,8 @@
       <div class="pull-right">
         {{#autoForm collection="Trips" id="addTripForm" type="insert"}}
           <fieldset>
-            {{> afQuickField name="date" type="bootstrap-datepicker"}}
-            {{> afQuickField name="distance" type="text"}}
+            {{> afFormGroup name="date" type="bootstrap-datepicker" id="tripDatePicker" }}
+            {{> afFormGroup name="distance" type="text"}}
           </fieldset>
           <button type="submit" class="btn btn-primary pull-right">Add trip</button>
         {{/autoForm}}

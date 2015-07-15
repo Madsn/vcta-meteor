@@ -19,12 +19,12 @@ Schema.User = new SimpleSchema({
       type: String,
       optional: true
     },
-    "emails.$.address": {
+    'emails.$.address': {
       type: String,
       regEx: SimpleSchema.RegEx.Email,
       optional: false
     },
-    "emails.$.verified": {
+    'emails.$.verified': {
       type: Boolean,
       optional: true
     },
@@ -33,7 +33,7 @@ Schema.User = new SimpleSchema({
     // If you specify that type as Object, you must also specify the
     // `Roles.GLOBAL_GROUP` group whenever you add a user to a role.
     // Example:
-    // Roles.addUsersToRoles(userId, ["admin"], Roles.GLOBAL_GROUP);
+    // Roles.addUsersToRoles(userId, ['admin'], Roles.GLOBAL_GROUP);
     // You can't mix and match adding with and without a group since
     // you will fail validation in some cases.
     roles: {
@@ -65,9 +65,9 @@ Schema.Trips = new SimpleSchema({
     max: new Date(2015, 7, 32),
     autoform: {
       afFieldInput: {
-        type: "bootstrap-datepicker",
+        type: 'bootstrap-datepicker',
         datePickerOptions: {
-          format: "dd/mm/yyyy",
+          format: 'dd/mm/yyyy',
           weekStart: 1,
           autoclose: true
         }

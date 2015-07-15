@@ -9,14 +9,8 @@
       <div class="panel-body">
         {{#autoForm collection="Meteor.users" doc=getCurrentUser id="usersForm" type="update"}}
           <fieldset>
-            {{> afQuickField name="username"}}
-            <div class="form-group{{#if afFieldIsInvalid name='emails.0.address'}} has-error{{/if}}">
-              <label for="email">Email</label>
-              {{> afFieldInput name="emails.0.address" id="email"}}
-              {{#if afFieldIsInvalid name="emails.0.address"}}
-                <span class="help-block">{{afFieldMessage name="emails.0.address"}}</span>
-              {{/if}}
-            </div>
+            {{> afFormGroup name="username"}}
+            {{> afFormGroup name="emails.0.address" id="email"}}
           </fieldset>
           <button type="submit" class="btn btn-primary pull-right">Update</button>
         {{/autoForm}}
