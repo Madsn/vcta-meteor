@@ -144,9 +144,9 @@ Meteor.users.helpers({
   getTeamName: function() {
     console.log('getTeamName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
-    var teamId = this.teamId;
-    if (!teamId) return '';
-    var team = Teams.findOne(teamId);
+    var user = Meteor.user();
+    if (!user.teamId) return '';
+    var team = Teams.findOne(user.teamId);
     return team ? team.name : '';
   },
   hasTeam: function() {
