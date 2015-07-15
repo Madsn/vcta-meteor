@@ -1,3 +1,7 @@
+Meteor.subscribe('trips');
+Meteor.subscribe('teams');
+Meteor.subscribe('userData');
+
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
