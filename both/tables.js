@@ -28,7 +28,8 @@ TabularTables.Players = new Tabular.Table({
   info: false,
   language: {
     zeroRecords: 'No users exist yet'
-  }
+  },
+  sub: new SubsManager()
 });
 
 TabularTables.Trips = new Tabular.Table({
