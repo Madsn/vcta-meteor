@@ -1,7 +1,5 @@
 Meteor.publish('userData', function() {
-  return Meteor.users.find(this.userId, {fields: {
-    teamId: 1,
-  }});
+  return Meteor.users.find({}, {fields: {teamId: 1}});
 });
 
 Meteor.publish('teams', function() {

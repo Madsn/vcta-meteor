@@ -1,6 +1,8 @@
-Meteor.subscribe('trips');
-Meteor.subscribe('teams');
-Meteor.subscribe('userData');
+Tracker.autorun(function () {
+  Meteor.subscribe("userData");
+  Meteor.subscribe('trips');
+  Meteor.subscribe('teams');
+});
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
@@ -28,7 +30,3 @@ Template._team_management.events({
 })
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
-
-Deps.autorun(function(){
-  Meteor.subscribe('userData');
-});
