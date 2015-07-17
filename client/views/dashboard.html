@@ -69,22 +69,24 @@
         <thead>
         </thead>
         <tbody>
-          <tr>
-            <td>Username</td>
-            <td>{{username}}</td>
-          </tr>
-          <tr>
-            <td>Total distance</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Cycling days</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Team</td>
-            <td></td>
-          </tr>
+          {{#with currentUser}}
+            <tr>
+              <td>Username</td>
+              <td>{{username}}</td>
+            </tr>
+            <tr>
+              <td>Total distance</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Cycling days</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Team</td>
+              <td><a href="/team/{{getTeamName}}">{{getTeamName}}</a></td>
+            </tr>
+          {{/with}}
         </tbody>
       </table>
     </div>
