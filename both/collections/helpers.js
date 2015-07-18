@@ -17,6 +17,14 @@ Meteor.users.helpers({
     console.log('isCaptain called');
     var team = Teams.findOne({_id: Meteor.user().teamId});
     return team ? team.captainUserId === this._id : false;
+  },
+  getCyclingDays: function() {
+    console.log('getCyclingDays called');
+    var days = _.uniq(Trips.find({userId: this._id})
+                .fetch().map(function(x) {
+                  return x.date;
+                }), true);
+    return days.length;
   }
 });
 

@@ -18,8 +18,8 @@ TabularTables.Players = new Tabular.Table({
         }
         return '<a href="/team/' + val + '">' + val + '</a>';
       }
-    }
-    //{ data: 'cyclingDays', title: 'Cycling days' },
+    },
+    { data: 'getCyclingDays()', title: 'Cycling days' },
     //{ data: 'distance', title: 'Distance' }
   ],
   paging: true,
