@@ -45,6 +45,9 @@ TabularTables.Trips = new Tabular.Table({
       render: function(val) {
         return val + ' km';
       }
+    },
+    {
+      tmpl: Meteor.isClient && Template.deleteTripButton
     }
   ],
   lengthMenu: [[50, -1], [50, "All"]],

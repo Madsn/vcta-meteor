@@ -27,6 +27,12 @@ Template._team_management.events({
   'click #deleteTeamBtn': function(){
     Meteor.call('deleteTeam');
   }
+});
+
+Template.deleteTripButton.events({
+  'click .deleteTripButton': function(event) {
+    Meteor.call('deleteTrip', event.target.id);
+  }
 })
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
