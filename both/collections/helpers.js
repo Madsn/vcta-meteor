@@ -25,6 +25,17 @@ Meteor.users.helpers({
                   return x.date;
                 }), true);
     return days.length;
+  },
+  getTotalDistance: function() {
+    console.log('getTotalDistance called');
+    var distance = _.reduce(_.map(Trips.find({userId: this._id})
+                    .fetch(), function(x) {
+                      return x.distance;
+                    }),
+                    function(prev, current) {
+                      return prev + current;
+                    }, 0);
+    return distance;
   }
 });
 

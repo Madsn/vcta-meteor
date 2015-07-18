@@ -20,7 +20,7 @@ TabularTables.Players = new Tabular.Table({
       }
     },
     { data: 'getCyclingDays()', title: 'Cycling days' },
-    //{ data: 'distance', title: 'Distance' }
+    { data: 'getTotalDistance()', title: 'Distance' }
   ],
   paging: true,
   lengthMenu: [[50, -1], [50, "All"]],
