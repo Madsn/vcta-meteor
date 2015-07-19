@@ -29,4 +29,10 @@ Template._team_management.events({
   }
 });
 
+Template._team_management.helpers({
+  managementEnabled: function() {
+    return true;
+  }
+});
+
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');

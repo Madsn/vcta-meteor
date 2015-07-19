@@ -26,22 +26,32 @@
 </template>
 
 <template name="_team_management">
-  {{#if currentUser.isCaptain}}
-    <p>User is captain</p>
-    <input id="deleteTeamBtn" type="button" class="btn btn-danger" value="Delete team"/>
-  {{/if}}
+  {{#if managementEnabled}}
+    <div class="panel panel-default">
+      {{> panel_heading title="Team management"}}
+      <div class="panel-body">
+        {{#if currentUser.hasTeam}}
+          {{#if currentUser.isCaptain}}
+            <input id="deleteTeamBtn" type="button" class="btn btn-danger" value="Delete team"/>
+          {{else}}
+            <input id="leaveTeamBtn" type="button" class="btn btn-danger" value="Leave team"/>
+          {{/if}}
+        {{/if}}
 
-  {{#if currentUser.hasTeam}}
-    <p>User is member of a team</p>
+        {{#unless currentUser.hasTeam}}
+          <h3>Create a team</h3>
+          {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
+            <fieldset>
+              {{> afFormGroup name="name"}}
+            </fieldset>
+            <div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </div>
+          {{/autoForm}}
+        {{/unless}}
+      </div>
+    </div>
   {{/if}}
-
-  {{#unless currentUser.hasTeam}}
-    {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
-      <fieldset>
-        {{> afFormGroup name="name"}}
-      </fieldset>
-    {{/autoForm}}
-  {{/unless}}
 </template>
 
 <template name="_dash_trips">

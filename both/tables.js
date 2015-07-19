@@ -61,3 +61,23 @@ TabularTables.Trips = new Tabular.Table({
     zeroRecords: 'No trips exist for this user'
   }
 });
+
+TabularTables.Members = new Tabular.Table({
+  name: 'MembersList',
+  collection: Meteor.users,
+  columns: [
+    { data: 'username', title: 'Name',
+      render: function(val) {
+        return '<a href="/user/' + val + '">' + val + '</a>';
+      }
+    },
+    { data: 'getCyclingDays()', title: 'Cycling days' },
+    { data: 'getTotalDistance()', title: 'Distance' }
+  ],
+  paging: false,
+  searching: false,
+  info: false,
+  language: {
+    zeroRecords: 'Fetching team members..'
+  }
+});
