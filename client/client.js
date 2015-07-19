@@ -30,11 +30,3 @@ Template._team_management.events({
 });
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
-
-AutoForm.hooks({
-  updateTripForm: {
-    onSuccess: function () {
-      Router.go('/dashboard');
-    }
-  }
-});
