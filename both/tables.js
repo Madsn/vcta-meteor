@@ -47,7 +47,7 @@ TabularTables.Teams = new Tabular.Table({
       }
     },
     { data: 'getCyclingDays()', title: 'Cycling days' },
-    //{ data: 'getTotalDistance()', title: 'Distance' }
+    { data: 'getTotalDistance()', title: 'Distance' }
   ],
   extraFields: ['captainUserId'],
   paging: true,

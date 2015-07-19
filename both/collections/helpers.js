@@ -55,5 +55,16 @@ Teams.helpers({
                     return prev + current;
                   }, 0);
     return days;
+  },
+  getTotalDistance: function() {
+    console.log('getTotalDistance(Team) called');
+    var distance = _.reduce(Meteor.users.find({teamId: this._id})
+                      .fetch().map(function(x) {
+                        return x.getTotalDistance();
+                      }),
+                      function(prev, current) {
+                        return prev + current;
+                      }, 0);
+    return distance;
   }
 });
