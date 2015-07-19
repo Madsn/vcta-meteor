@@ -29,10 +29,12 @@ Template._team_management.events({
   }
 });
 
-Template.deleteTripButton.events({
-  'click .deleteTripButton': function(event) {
-    Meteor.call('deleteTrip', event.target.id);
-  }
-})
-
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
+
+AutoForm.hooks({
+  updateTripForm: {
+    onSuccess: function () {
+      Router.go('/dashboard');
+    }
+  }
+});

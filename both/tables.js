@@ -48,6 +48,9 @@ TabularTables.Trips = new Tabular.Table({
     },
     {
       tmpl: Meteor.isClient && Template.deleteTripButton
+    },
+    {
+      tmpl: Meteor.isClient && Template.editTripButton
     }
   ],
   lengthMenu: [[50, -1], [50, "All"]],

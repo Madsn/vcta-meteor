@@ -1,0 +1,10 @@
+<template name="editTrip">
+  {{#autoForm collection="Trips" doc=this id="updateTripForm" type="update" omitFields="userId"}}
+    {{> afFormGroup name="date" }}
+    {{> afFormGroup name="distance" }}
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/dashboard" type="button" class="btn btn-danger cancel">Cancel</a>
+    </div>
+  {{/autoForm}}
+</template>

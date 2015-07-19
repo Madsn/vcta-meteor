@@ -1,3 +1,11 @@
 <template name="deleteTripButton">
-  <a class="deleteTripButton clickable"><i id="{{this._id}}" class="glyphicon glyphicon-trash"></i></a>
+  {{#afModal class="clickable" collection="Trips" operation="remove" doc="{{_id}}"}}
+    <i class="glyphicon glyphicon-trash"></i>
+  {{/afModal}}
+</template>
+
+<template name="editTripButton">
+  <a href="/trip/{{this._id}}">
+    <i class="glyphicon glyphicon-pencil"></i>
+  </a>
 </template>

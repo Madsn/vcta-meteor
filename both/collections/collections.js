@@ -112,7 +112,12 @@ Schema.Trips = new SimpleSchema({
     optional: false,
     decimal: true,
     min: 0,
-    max: 350
+    max: 350,
+    autoform: {
+      afFieldInput: {
+        type: 'number'
+      }
+    }
   }
 });
 

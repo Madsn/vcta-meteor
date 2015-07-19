@@ -30,7 +30,15 @@ Router.map(function() {
       return team;
     }
   });
-})
+  this.route('trip', {
+    path: '/trip/:_id',
+    template:  'editTrip',
+    data: function() {
+      var trip = Trips.findOne(this.params._id);
+      return trip;
+    }
+  });
+});
 
 Router.configure({
   layoutTemplate: 'layout'
