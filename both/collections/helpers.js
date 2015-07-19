@@ -42,7 +42,9 @@ Teams.helpers({
   getCaptainName: function() {
     console.log('getCaptainName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
-    var user = Meteor.users.findOne(this.captainUserId);
+    console.log(this);
+    var user = Meteor.users.findOne({_id: this.captainUserId});
+    console.log(user);
     return user.username;
   }
 });

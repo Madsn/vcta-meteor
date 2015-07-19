@@ -32,6 +32,34 @@ TabularTables.Players = new Tabular.Table({
   sub: new SubsManager()
 });
 
+TabularTables.Teams = new Tabular.Table({
+  name: 'TeamsList',
+  collection: Teams,
+  columns: [
+    { data: 'name', title: 'Name',
+      render: function(val) {
+        return '<a href="/team/' + val + '">' + val + '</a>';
+      }
+    },
+    { data: 'getCaptainName()', title: 'Captain',
+      render: function(val) {
+        return '<a href="/user/' + val + '">' + val + '</a>';
+      }
+    },
+    //{ data: 'getCyclingDays()', title: 'Cycling days' },
+    //{ data: 'getTotalDistance()', title: 'Distance' }
+  ],
+  extraFields: ['captainUserId'],
+  paging: true,
+  lengthMenu: [[50, -1], [50, "All"]],
+  searching: true,
+  info: false,
+  language: {
+    zeroRecords: 'Fetching teams'
+  },
+  sub: new SubsManager()
+});
+
 TabularTables.Trips = new Tabular.Table({
   name: 'TripsList',
   collection: Trips,
