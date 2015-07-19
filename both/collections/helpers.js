@@ -42,9 +42,18 @@ Teams.helpers({
   getCaptainName: function() {
     console.log('getCaptainName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
-    console.log(this);
     var user = Meteor.users.findOne({_id: this.captainUserId});
-    console.log(user);
     return user.username;
+  },
+  getCyclingDays: function() {
+    console.log('getCyclingDays(Team) called');
+    var days = _.reduce(Meteor.users.find({teamId: this._id})
+                  .fetch().map(function(x) {
+                    return x.getCyclingDays();
+                  }),
+                  function(prev, current) {
+                    return prev + current;
+                  }, 0);
+    return days;
   }
 });

@@ -46,7 +46,7 @@ TabularTables.Teams = new Tabular.Table({
         return '<a href="/user/' + val + '">' + val + '</a>';
       }
     },
-    //{ data: 'getCyclingDays()', title: 'Cycling days' },
+    { data: 'getCyclingDays()', title: 'Cycling days' },
     //{ data: 'getTotalDistance()', title: 'Distance' }
   ],
   extraFields: ['captainUserId'],
