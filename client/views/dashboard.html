@@ -32,6 +32,7 @@
       <div class="panel-body">
         {{#if currentUser.hasTeam}}
           {{#if currentUser.isCaptain}}
+            {{> _invite_players }}
             <input id="deleteTeamBtn" type="button" class="btn btn-danger" value="Delete team"/>
           {{else}}
             <input id="leaveTeamBtn" type="button" class="btn btn-danger" value="Leave team"/>
@@ -52,6 +53,13 @@
       </div>
     </div>
   {{/if}}
+</template>
+
+<template name="_invite_players">
+  <input class="form-control typeahead" name="findMember" type="text"
+         placeholder="Member name"
+         autocomplete="off" spellcheck="off"
+         data-source="users"/>
 </template>
 
 <template name="_dash_trips">

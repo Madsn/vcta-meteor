@@ -32,7 +32,21 @@ Template._team_management.events({
 Template._team_management.helpers({
   managementEnabled: function() {
     return true;
+  },
+});
+
+Template._invite_players.helpers({
+  users: function() {
+    var teamId = Meteor.user().teamId;
+    if (!teamId) return [];
+    var users = Meteor.users.find({teamId: {$ne: teamId}}).fetch()
+                        .map(function(it){ return it.username; });
+    return users;
   }
 });
+
+Template._invite_players.rendered = function() {
+  Meteor.typeahead.inject();
+};
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
