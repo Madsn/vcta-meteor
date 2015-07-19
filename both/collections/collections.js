@@ -96,6 +96,18 @@ Schema.User = new SimpleSchema({
       type: Object,
       optional: true,
       blackbox: true
+    },
+    cyclingDays: {
+      type: Number,
+      optional: false,
+      defaultValue: 0,
+      min: 0
+    },
+    distance: {
+      type: Number,
+      optional: false,
+      defaultValue: 0,
+      min: 0
     }
 });
 
@@ -148,7 +160,11 @@ Schema.Teams = new SimpleSchema({
     unique: true,
     regEx: /^([a-z0-9A-Z_]{1,20}\s?){1,4}$/,
   },
-  captainUserId: {
+  captain: {
+    type: Object,
+    optional: false,
+  },
+  'captain.userId': {
     type: String,
     optional: false,
     autoValue: function() {
@@ -158,6 +174,13 @@ Schema.Teams = new SimpleSchema({
       if (Meteor.user().team !== undefined) {
         return 'Not permitted, user already belongs to a team';
       }
+    }
+  },
+  'captain.username': {
+    type: String,
+    optional: false,
+    autoValue: function() {
+      return Meteor.user().username;
     }
   }
 });

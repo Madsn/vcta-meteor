@@ -19,8 +19,8 @@ TabularTables.Players = new Tabular.Table({
         return '<a href="/team/' + val + '">' + val + '</a>';
       }
     },
-    { data: 'getCyclingDays()', title: 'Cycling days' },
-    { data: 'getTotalDistance()', title: 'Distance' }
+    { data: 'cyclingDays', title: 'Cycling days' },
+    { data: 'distance', title: 'Distance' }
   ],
   paging: true,
   lengthMenu: [[50, -1], [50, "All"]],
@@ -41,7 +41,7 @@ TabularTables.Teams = new Tabular.Table({
         return '<a href="/team/' + val + '">' + val + '</a>';
       }
     },
-    { data: 'getCaptainName()', title: 'Captain',
+    { data: 'captain.username', title: 'Captain',
       render: function(val) {
         return '<a href="/user/' + val + '">' + val + '</a>';
       }

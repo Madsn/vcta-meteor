@@ -23,6 +23,7 @@ Meteor.users.helpers({
                 .fetch().map(function(x) {
                   return x.date;
                 }), true);
+    console.log(days);
     return days.length;
   },
   getTotalDistance: function() {
