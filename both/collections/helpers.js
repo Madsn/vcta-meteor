@@ -3,7 +3,6 @@ Meteor.users.helpers({
     console.log('getTeamName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
     var user = Meteor.users.findOne(this._id);
-    console.log(user);
     if (!user.teamId) return '';
     var team = Teams.findOne(user.teamId);
     return team ? team.name : '';

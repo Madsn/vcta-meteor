@@ -1,10 +1,10 @@
-Trips = new Meteor.Collection('trips');
 Teams = new Meteor.Collection('teams');
-
+Trips = new Meteor.Collection('trips');
+Invitations = new Meteor.Collection('Invitations');
 
 var isTeamCaptain = function(userId, doc) {
   return userId && doc.captainUserId === userId;
-}
+};
 
 Teams.allow({
   insert: function(userId, doc) {
@@ -20,7 +20,7 @@ Teams.allow({
 
 var isTripOwner = function(userId, doc) {
   return userId && userId === doc.userId;
-}
+};
 
 Trips.allow({
   insert: function(userId, doc) {
@@ -32,7 +32,25 @@ Trips.allow({
   remove: function(userId, doc) {
     return isTripOwner;
   }
-})
+});
+
+var isCaptainOfSendingTeam = function(userId, doc) {
+  var team = Teams.findOne({_id: doc.sendingTeam});
+  if (!team) return false;
+  return team.captainUserId === userId;
+};
+
+Invitations.allow({
+  insert: function(userId, doc) {
+    return isCaptainOfSendingTeam(userId, doc);
+  },
+  update: function(userId, doc) {
+    return isCaptainOfSendingTeam(userId, doc) || doc.receiver === userId;
+  },
+  remove: function(userId, doc) {
+    return isCaptainOfSendingTeam(userId, doc) || doc.receiver === userId;
+  }
+});
 
 Schema = {};
 
@@ -145,3 +163,16 @@ Schema.Teams = new SimpleSchema({
 });
 
 Teams.attachSchema(Schema.Teams);
+
+Schema.Invitations = new SimpleSchema({
+  receiver: {
+    type: String,
+    optional: false
+  },
+  sendingTeam: {
+    type: String,
+    optional: false
+  }
+});
+
+Invitations.attachSchema(Schema.Invitations);

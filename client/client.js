@@ -39,8 +39,8 @@ Template._invite_players.helpers({
   users: function() {
     var teamId = Meteor.user().teamId;
     if (!teamId) return [];
-    var users = Meteor.users.find({teamId: {$ne: teamId}}).fetch()
-                        .map(function(it){ return it.username; });
+    var users = Meteor.users.find(
+      {teamId: {$ne: teamId}}, {sort: {username: 1}}).fetch();
     return users;
   }
 });

@@ -56,10 +56,14 @@
 </template>
 
 <template name="_invite_players">
-  <input class="form-control typeahead" name="findMember" type="text"
-         placeholder="Member name"
-         autocomplete="off" spellcheck="off"
-         data-source="users"/>
+  <select id = "invitationSelect">
+    {{#each users}}
+      <option value="{{_id}}">{{username}}</option>
+    {{/each}}
+  </select>
+  <script>
+    $('#invitationSelect').select2();
+  </script>
 </template>
 
 <template name="_dash_trips">
