@@ -6,14 +6,29 @@ var updateUserAndTeam = function(doc, daysDiff, distanceDiff) {
   }
 };
 
+
+var updateIfTeamChanged = function(userId, doc, scope) {
+  if (scope.previous.teamId !== doc.teamId) {
+    Teams.update(scope.previous.teamId,
+      {$inc: {cyclingDays: -scope.previous.cyclingDays, totalDistance: -scope.previous.distance}});
+    if (doc) {
+      Teams.update(doc.teamId, {$inc: {cyclingDays: doc.cyclingDays, totalDistance: doc.distance}});
+    }
+  }
+};
+
 Meteor.users.after.update(function(userId, doc) {
-  console.log('after user update');
+  updateIfTeamChanged(userId, doc, this);
+});
+
+Meteor.users.after.remove(function(userId, doc) {
+  updateIfTeamChanged(userId, doc, this);
 });
 
 Teams.after.insert(function (userId, doc) {
   Meteor.users.update(userId, {$set: {teamId: this._id}});
   var captain = Meteor.user();
-  Teams.direct.update({_id: doc._id}, {$set: {cyclingDays: captain.cyclingDays, totalDistance: captain.distance}});
+  Teams.update({_id: doc._id}, {$set: {cyclingDays: captain.cyclingDays, totalDistance: captain.distance}});
 });
 
 Teams.after.remove(function (userId, doc) {
