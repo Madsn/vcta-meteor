@@ -25,7 +25,13 @@ Template.dashboard.helpers({
 
 Template._team_management.events({
   'click #deleteTeamBtn': function(){
-    Meteor.call('deleteTeam');
+    Meteor.call('deleteTeam', null, function (err) {
+      if (err) {
+        sAlert.error('Team deletion failed');
+      } else {
+        sAlert.info('Team successfully deleted');
+      }
+    });
   }
 });
 
@@ -50,3 +56,14 @@ Template._invite_players.rendered = function() {
 };
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
+
+AutoForm.hooks({
+  addTeamForm: {
+    onSuccess: function(formType, result) {
+      sAlert.info('Team created');
+    },
+    onError: function(formType, error) {
+      sAlert.error('Team creation failed');
+    },
+  }
+});
