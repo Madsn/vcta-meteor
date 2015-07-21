@@ -160,11 +160,7 @@ Schema.Teams = new SimpleSchema({
     unique: true,
     regEx: /^([a-z0-9A-Z_]{1,20}\s?){1,4}$/,
   },
-  captain: {
-    type: Object,
-    optional: false,
-  },
-  'captain.userId': {
+  captainUserId: {
     type: String,
     optional: false,
     autoValue: function() {
@@ -174,13 +170,6 @@ Schema.Teams = new SimpleSchema({
       if (Meteor.user().team !== undefined) {
         return 'Not permitted, user already belongs to a team';
       }
-    }
-  },
-  'captain.username': {
-    type: String,
-    optional: false,
-    autoValue: function() {
-      return Meteor.user().username;
     }
   },
   cyclingDays: {

@@ -41,7 +41,7 @@ TabularTables.Teams = new Tabular.Table({
         return '<a href="/team/' + val + '">' + val + '</a>';
       }
     },
-    { data: 'captain.username', title: 'Captain',
+    { data: 'getCaptainName()', title: 'Captain',
       render: function(val) {
         return '<a href="/user/' + val + '">' + val + '</a>';
       }
