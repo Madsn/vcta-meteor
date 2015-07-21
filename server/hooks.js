@@ -1,5 +1,19 @@
+var updateUserAndTeam = function(doc, daysDiff, distanceDiff) {
+  Meteor.users.update({_id: doc.userId},
+    {$inc: {cyclingDays: daysDiff, distance: distanceDiff}});
+  if (doc.teamId) {
+    Teams.update({_id: doc.teamId}, {$inc: {cyclingDays: daysDiff, totalDistance: distanceDiff}});
+  }
+};
+
+Meteor.users.after.update(function(userId, doc) {
+  console.log('after user update');
+});
+
 Teams.after.insert(function (userId, doc) {
   Meteor.users.update(userId, {$set: {teamId: this._id}});
+  var captain = Meteor.user();
+  Teams.direct.update({_id: doc._id}, {$set: {cyclingDays: captain.cyclingDays, totalDistance: captain.distance}});
 });
 
 Teams.after.remove(function (userId, doc) {
@@ -7,17 +21,15 @@ Teams.after.remove(function (userId, doc) {
 });
 
 Trips.after.insert(function (userId, doc) {
-  var incrementCyclingDay = Trips.findOne({_id: {$ne: doc._id},
+  var daysDiff = Trips.findOne({_id: {$ne: doc._id},
     userId: doc.userId, date: doc.date}) ? 0 : 1;
-  Meteor.users.update({_id: doc.userId},
-    {$inc: {cyclingDays: incrementCyclingDay, distance: doc.distance}});
+  updateUserAndTeam(doc, daysDiff, doc.distance);
 });
 
 Trips.after.remove(function (userId, doc) {
-  var incrementCyclingDay = Trips.findOne({_id: {$ne: doc._id},
+  var daysDiff = Trips.findOne({_id: {$ne: doc._id},
     userId: doc.userId, date: doc.date}) ? 0 : 1;
-  Meteor.users.update({_id: doc.userId},
-    {$inc: {cyclingDays: -incrementCyclingDay, distance: -doc.distance}});
+  updateUserAndTeam(doc, -daysDiff, -doc.distance);
 });
 
 Trips.after.update(function (userId, doc) {
@@ -30,8 +42,7 @@ Trips.after.update(function (userId, doc) {
       date: this.previous.date, _id: {$ne: doc._id}}) ? 0 : 1;
     cyclingDaysDiff = newDateIsUnique - oldDateIsUnique;
   }
-  Meteor.users.update({_id: doc.userId},
-    {$inc: {cyclingDays: cyclingDaysDiff, distance: distanceDiff}});
+  updateUserAndTeam(doc, cyclingDaysDiff, distanceDiff);
 });
 
 Accounts.onCreateUser(function(options, user) {

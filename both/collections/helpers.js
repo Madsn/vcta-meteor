@@ -15,7 +15,7 @@ Meteor.users.helpers({
   isCaptain: function() {
     console.log('isCaptain called');
     var team = Teams.findOne({_id: Meteor.user().teamId});
-    return team ? team.captain.userId === this._id : false;
+    return team ? (team.captain && team.captain.userId === this._id) : false;
   },
   getCyclingDays: function() {
     console.log('getCyclingDays called');

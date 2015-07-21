@@ -182,6 +182,16 @@ Schema.Teams = new SimpleSchema({
     autoValue: function() {
       return Meteor.user().username;
     }
+  },
+  cyclingDays: {
+    type: Number,
+    optional: false,
+    defaultValue: 0
+  },
+  totalDistance: {
+    type: Number,
+    optional: false,
+    defaultValue: 0
   }
 });
 
