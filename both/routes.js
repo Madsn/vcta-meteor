@@ -1,19 +1,7 @@
-var subs = new SubsManager();
-
 Router.map(function() {
-  this.route('dashboard', {
-    path: '/dashboard',
-    waitOn: function() {
-      return (subs.subscribe('invitations') && subs.subscribe('trips'));
-    }
-  });
+  this.route('dashboard');
   this.route('rules');
-  this.route('scoreboard', {
-    path: '/scoreboard',
-    waitOn: function() {
-      return subs.subscribe('teams');
-    }
-  });
+  this.route('scoreboard');
   this.route('manageaccount');
   this.route('root', {
     path: '/',

@@ -110,7 +110,6 @@ TabularTables.Invitations = new Tabular.Table({
   name: 'InvitationsList',
   collection: Invitations,
   columns: [
-    { data: 'receiver', title: 'Receiver' },
     { data: 'getReceiverName()', title: 'Receiver' },
     { tmpl: Meteor.isClient && Template.deleteInvitationButton }
   ],
@@ -120,6 +119,5 @@ TabularTables.Invitations = new Tabular.Table({
   language: {
     zeroRecords: 'No invitations sent'
   },
-  extraFields: ['sendingTeam', 'receiver'],
-  sub: new SubsManager()
+  extraFields: ['sendingTeam', 'receiver']
 });
