@@ -51,6 +51,16 @@ Template._invite_players.helpers({
   }
 });
 
+Template._invite_players.events({
+  'submit #invitePlayerForm': function (event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    console.log('form submit');
+    console.log(event.target.receiver.value);
+  }
+});
+
 Template._invite_players.rendered = function() {
   Meteor.typeahead.inject();
 };

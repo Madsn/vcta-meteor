@@ -60,11 +60,18 @@
 </template>
 
 <template name="_invite_players">
-  <select id = "invitationSelect">
-    {{#each users}}
-      <option value="{{_id}}">{{username}}</option>
-    {{/each}}
-  </select>
+  <form id="invitePlayerForm">
+    <select id="invitationselect" name="receiver">
+      {{#each users}}
+        <option value="{{_id}}">
+          {{username}}
+        </option>
+      {{/each}}
+    </select>
+    <div>
+      <button type="submit" class="btn btn-primary pull-right">Submit</button>
+    </div>
+  </form>
   <script>
     $('#invitationSelect').select2();
   </script>
