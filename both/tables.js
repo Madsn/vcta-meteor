@@ -74,12 +74,8 @@ TabularTables.Trips = new Tabular.Table({
         return val + ' km';
       }
     },
-    {
-      tmpl: Meteor.isClient && Template.deleteTripButton
-    },
-    {
-      tmpl: Meteor.isClient && Template.editTripButton
-    }
+    { tmpl: Meteor.isClient && Template.deleteTripButton },
+    { tmpl: Meteor.isClient && Template.editTripButton }
   ],
   lengthMenu: [[50, -1], [50, "All"]],
   paging: true,
@@ -108,4 +104,22 @@ TabularTables.Members = new Tabular.Table({
   language: {
     zeroRecords: 'Fetching team members..'
   }
+});
+
+TabularTables.Invitations = new Tabular.Table({
+  name: 'InvitationsList',
+  collection: Invitations,
+  columns: [
+    { data: 'receiver', title: 'Receiver' },
+    { data: 'getReceiverName()', title: 'Receiver' },
+    { tmpl: Meteor.isClient && Template.deleteInvitationButton }
+  ],
+  paging: false,
+  searching: false,
+  info: false,
+  language: {
+    zeroRecords: 'No invitations sent'
+  },
+  extraFields: ['sendingTeam', 'receiver'],
+  sub: new SubsManager()
 });

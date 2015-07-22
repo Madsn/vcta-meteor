@@ -56,10 +56,15 @@ Template._invite_players.events({
   'submit #invitePlayerForm': function (event) {
     // Prevent default browser form submit
     event.preventDefault();
-    Meteor.call('createInvitation', event.target.receiver.value, function(err) {
+    var receiverId = event.target.receiver.value;
+
+    Invitations.insert({
+      receiver: receiverId,
+      sendingTeam: Meteor.user().teamId
+    }, function(err) {
       if (err) {
-        console.log(err);
-        sAlert.error('Invitation could not be sent: <br/>' + err.reason);
+        sAlert.error(err.reason);
+        //sAlert.error('This user has already been invited');
       } else {
         sAlert.info('Invitation sent');
       }
@@ -70,6 +75,12 @@ Template._invite_players.events({
 Template._invite_players.rendered = function() {
   Meteor.typeahead.inject();
 };
+
+Template._invitations.helpers({
+  selector: function() {
+    return {sendingTeam: Meteor.user().teamId};
+  }
+});
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
 

@@ -70,3 +70,8 @@ Accounts.onCreateUser(function(options, user) {
   return user;
 });
 
+Invitations.before.insert(function(userId, doc) {
+  if (Invitations.findOne({receiver: doc.receiver, sendingTeam: doc.sendingTeam, _id: {$ne: doc._id}})) {
+    throw new Meteor.Error('duplicate', 'That person has already been invited');
+  }
+});

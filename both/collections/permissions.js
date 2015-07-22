@@ -38,8 +38,7 @@ var isCaptainOfSendingTeam = function(userId, doc) {
 
 Invitations.allow({
   insert: function(userId, doc) {
-    return true;
-    //return isCaptainOfSendingTeam(userId, doc);
+    return isCaptainOfSendingTeam(userId, doc);
   },
   update: function(userId, doc) {
     return isCaptainOfSendingTeam(userId, doc) || doc.receiver === userId;

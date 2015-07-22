@@ -1,6 +1,6 @@
 Teams = new Meteor.Collection('teams');
 Trips = new Meteor.Collection('trips');
-Invitations = new Meteor.Collection('Invitations');
+Invitations = new Meteor.Collection('invitations');
 
 Schema = {};
 

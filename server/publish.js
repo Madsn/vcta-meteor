@@ -12,4 +12,5 @@ Meteor.publish('trips', function() {
 
 Meteor.publish('invitations', function() {
   return Invitations.find();
+  //return Invitations.find({sendingTeam: Meteor.user().teamId});
 });

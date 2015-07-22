@@ -68,3 +68,11 @@ Teams.helpers({
     return distance;
   }
 });
+
+Invitations.helpers({
+  getReceiverName: function() {
+    console.log('getReceiverName');
+    var user = Meteor.users.findOne({_id: this.receiver});
+    return user.username;
+  }
+});
