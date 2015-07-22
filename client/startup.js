@@ -4,7 +4,7 @@ Meteor.startup(function () {
         effect: 'genie',
         position: 'bottom-right',
         timeout: 2500,
-        html: false,
+        html: true,
         onRouteClose: false,
         stack: true,
         offset: 0

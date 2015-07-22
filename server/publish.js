@@ -9,3 +9,7 @@ Meteor.publish('teams', function() {
 Meteor.publish('trips', function() {
   return Trips.find();
 });
+
+Meteor.publish('invitations', function() {
+  return Invitations.find();
+});

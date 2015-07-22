@@ -2,6 +2,7 @@ Tracker.autorun(function () {
   Meteor.subscribe("userData");
   Meteor.subscribe('trips');
   Meteor.subscribe('teams');
+  Meteor.subscribe('invitations');
 });
 
 Accounts.ui.config({
@@ -55,9 +56,14 @@ Template._invite_players.events({
   'submit #invitePlayerForm': function (event) {
     // Prevent default browser form submit
     event.preventDefault();
-
-    console.log('form submit');
-    console.log(event.target.receiver.value);
+    Meteor.call('createInvitation', event.target.receiver.value, function(err) {
+      if (err) {
+        console.log(err);
+        sAlert.error('Invitation could not be sent: <br/>' + err.reason);
+      } else {
+        sAlert.info('Invitation sent');
+      }
+    });
   }
 });
 
