@@ -64,12 +64,12 @@ TabularTables.Trips = new Tabular.Table({
   name: 'TripsList',
   collection: Trips,
   columns: [
-    { data: 'date', title: 'Day', searchable: false,
+    { data: 'date', title: 'Day',
       render: function(val) {
         return moment(val).format('DD MMMM');
       }
     },
-    { data: 'distance', title: 'Distance', searchable: false,
+    { data: 'distance', title: 'Distance',
       render: function(val) {
         return val + ' km';
       }
@@ -113,11 +113,13 @@ TabularTables.Invitations = new Tabular.Table({
     { data: 'getReceiverName()', title: 'Receiver' },
     { tmpl: Meteor.isClient && Template.deleteInvitationButton }
   ],
-  paging: false,
+  paging: true,
+  lengthMenu: [[50, -1], [50, "All"]],
   searching: false,
   info: false,
   language: {
     zeroRecords: 'No invitations sent'
   },
-  extraFields: ['sendingTeam', 'receiver']
+  extraFields: ['sendingTeam', 'receiver'],
+  sub: new SubsManager()
 });

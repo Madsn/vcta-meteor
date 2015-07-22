@@ -22,12 +22,10 @@ rajit:bootstrap3-datepicker
 aldeed:autoform-bs-datepicker
 msavin:mongol
 momentjs:moment
-mpowaga:autoform-autocomplete
 matb33:collection-hooks
 dburles:collection-helpers
 meteorhacks:subs-manager
 yogiben:autoform-modals
-sergeyt:typeahead
 natestrauser:select2
 zimme:select2-bootstrap3-css
 juliancwirko:s-alert

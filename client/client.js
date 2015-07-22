@@ -64,7 +64,6 @@ Template._invite_players.events({
     }, function(err) {
       if (err) {
         sAlert.error(err.reason);
-        //sAlert.error('This user has already been invited');
       } else {
         sAlert.info('Invitation sent');
       }
@@ -81,6 +80,7 @@ Template._invitations.helpers({
     return {sendingTeam: Meteor.user().teamId};
   }
 });
+
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
 

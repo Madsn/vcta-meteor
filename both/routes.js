@@ -26,5 +26,6 @@ Router.map(function() {
 });
 
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading'
 });
