@@ -40,6 +40,9 @@ Template._team_management.helpers({
   managementEnabled: function() {
     return true;
   },
+  selector: function() {
+    return {receiver: Meteor.user()._id};
+  }
 });
 
 Template._invite_players.helpers({
