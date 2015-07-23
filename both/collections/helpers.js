@@ -35,6 +35,10 @@ Meteor.users.helpers({
                       return prev + current;
                     }, 0);
     return distance;
+  },
+  updateCyclingDaysAndDistance: function() {
+    Meteor.users.direct.update(this._id,
+      {$set: {cyclingDays: this.getCyclingDays(), distance: this.getTotalDistance()}});
   }
 });
 
@@ -49,7 +53,7 @@ Teams.helpers({
     console.log('getCyclingDays(Team) called');
     var days = _.reduce(Meteor.users.find({teamId: this._id})
                   .fetch().map(function(x) {
-                    return x.getCyclingDays();
+                    return x.cyclingDays;
                   }),
                   function(prev, current) {
                     return prev + current;
@@ -60,12 +64,16 @@ Teams.helpers({
     console.log('getTotalDistance(Team) called');
     var distance = _.reduce(Meteor.users.find({teamId: this._id})
                       .fetch().map(function(x) {
-                        return x.getTotalDistance();
+                        return x.distance;
                       }),
                       function(prev, current) {
                         return prev + current;
                       }, 0);
     return distance;
+  },
+  updateCyclingDaysAndDistance: function() {
+    Teams.direct.update(this._id,
+      {$set: {cyclingDays: this.getCyclingDays(), totalDistance: this.getTotalDistance()}});
   }
 });
 

@@ -112,7 +112,7 @@
           <button type="submit" class="btn btn-primary pull-right">Add trip</button>
         {{/autoForm}}
       </div>
-      {{> tabular table=TabularTables.Trips class="table table-striped table-hover" }}
+      {{> tabular table=TabularTables.Trips selector=tripsSelector class="table table-striped table-hover" }}
     </div>
   </div>
 </template>
@@ -156,9 +156,9 @@
 </template>
 
 <template name="acceptInvitationButton">
-  {{#afModal class="clickable" collection="Invitations" operation="remove" doc=_id}}
-    <i class="glyphicon glyphicon-ok"></i>
-  {{/afModal}}
+  <a class="clickable acceptInvitation">
+    <i id="{{this._id}}" class="glyphicon glyphicon-ok"></i>
+  </a>
 </template>
 
 <template name="declineInvitationButton">

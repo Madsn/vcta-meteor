@@ -1,28 +1,33 @@
-var updateUserAndTeam = function(doc, daysDiff, distanceDiff) {
-  Meteor.users.update({_id: doc.userId},
-    {$inc: {cyclingDays: daysDiff, distance: distanceDiff}});
-  if (doc.teamId) {
-    Teams.update({_id: doc.teamId}, {$inc: {cyclingDays: daysDiff, totalDistance: distanceDiff}});
+var onUserModified = function(userId, doc, scope) {
+  var user = Meteor.users.findOne(doc._id);
+  if (user) {
+    user.updateCyclingDaysAndDistance();
+  }
+  var oldTeam = Teams.findOne(scope.previous.teamId);
+  var newTeam = Teams.findOne(doc.teamId);
+  if (oldTeam && newTeam !== oldTeam) {
+    oldTeam.updateCyclingDaysAndDistance();
+  }
+  if (newTeam) {
+    newTeam.updateCyclingDaysAndDistance();
   }
 };
 
-
-var updateIfTeamChanged = function(userId, doc, scope) {
-  if (scope.previous.teamId !== doc.teamId) {
-    Teams.update(scope.previous.teamId,
-      {$inc: {cyclingDays: -scope.previous.cyclingDays, totalDistance: -scope.previous.distance}});
-    if (doc) {
-      Teams.update(doc.teamId, {$inc: {cyclingDays: doc.cyclingDays, totalDistance: doc.distance}});
-    }
+var onTripModified = function(userId, doc, scope) {
+  var user = Meteor.users.findOne(userId);
+  user.updateCyclingDaysAndDistance();
+  var team = Teams.findOne(user.teamId);
+  if (team) {
+    team.updateCyclingDaysAndDistance();
   }
 };
 
 Meteor.users.after.update(function(userId, doc) {
-  updateIfTeamChanged(userId, doc, this);
+  onUserModified(userId, doc, this);
 });
 
 Meteor.users.after.remove(function(userId, doc) {
-  updateIfTeamChanged(userId, doc, this);
+  onUserModified(userId, doc, this);
 });
 
 Teams.after.insert(function (userId, doc) {
@@ -36,28 +41,15 @@ Teams.after.remove(function (userId, doc) {
 });
 
 Trips.after.insert(function (userId, doc) {
-  var daysDiff = Trips.findOne({_id: {$ne: doc._id},
-    userId: doc.userId, date: doc.date}) ? 0 : 1;
-  updateUserAndTeam(doc, daysDiff, doc.distance);
+  onTripModified(userId, doc, this);
 });
 
 Trips.after.remove(function (userId, doc) {
-  var daysDiff = Trips.findOne({_id: {$ne: doc._id},
-    userId: doc.userId, date: doc.date}) ? 0 : 1;
-  updateUserAndTeam(doc, -daysDiff, -doc.distance);
+  onTripModified(userId, doc, this);
 });
 
 Trips.after.update(function (userId, doc) {
-  var cyclingDaysDiff = 0;
-  var distanceDiff = doc.distance - this.previous.distance;
-  if (this.previous.date !== doc.date) {
-    var newDateIsUnique = Trips.findOne({userId: doc.userId,
-      date: doc.date, _id: {$ne: doc._id}}) ? 0 : 1;
-    var oldDateIsUnique = Trips.findOne({userId: doc.userId,
-      date: this.previous.date, _id: {$ne: doc._id}}) ? 0 : 1;
-    cyclingDaysDiff = newDateIsUnique - oldDateIsUnique;
-  }
-  updateUserAndTeam(doc, cyclingDaysDiff, distanceDiff);
+  onTripModified(userId, doc, this);
 });
 
 Accounts.onCreateUser(function(options, user) {

@@ -74,16 +74,33 @@ Template._invite_players.events({
   }
 });
 
-Template._invite_players.rendered = function() {
-  Meteor.typeahead.inject();
-};
-
 Template._invitations.helpers({
   selector: function() {
     return {sendingTeam: Meteor.user().teamId};
   }
 });
 
+Template.acceptInvitationButton.events({
+  'click .acceptInvitation': function(event) {
+    bootbox.confirm('Are you sure?', function(result) {
+      if (result) {
+        Meteor.call('acceptInvitation', event.target.id, function(err) {
+          if (err) {
+            sAlert.error('Error accepting invitation:<br/>' + err.reason);
+          } else {
+            sAlert.info('Team invitation accepted');
+          }
+        })
+      }
+    });
+  }
+});
+
+Template._dash_trips.helpers({
+  tripsSelector: function() {
+    return {userId: Meteor.user()._id};
+  }
+});
 
 Template.custom_loginButtonsLoggedInDropdownActions.replaces('_loginButtonsLoggedInDropdownActions');
 
