@@ -1,5 +1,5 @@
 TabularTables = {};
-
+/*
 Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
 TabularTables.Players = new Tabular.Table({
@@ -142,3 +142,4 @@ TabularTables.ReceivedInvitations = new Tabular.Table({
   extraFields: ['sendingTeam', 'receiver'],
   sub: new SubsManager()
 });
+*/

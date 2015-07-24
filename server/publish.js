@@ -2,15 +2,15 @@ Meteor.publish('userData', function() {
   return Meteor.users.find({}, {fields: {teamId: 1, username: 1, cyclingDays: 1, distance: 1}});
 });
 
-Meteor.publish('teams', function() {
-  return Teams.find();
+Teams.publish('teams', function() {
+  return Teams.select();
 });
 
-Meteor.publish('trips', function() {
-  return Trips.find();
+Trips.publish('trips', function() {
+  return Trips.select();
 });
 
-Meteor.publish('invitations', function() {
-  return Invitations.find();
+Invitations.publish('invitations', function() {
+  return Invitations.select();
   //return Invitations.find({sendingTeam: Meteor.user().teamId});
 });
