@@ -1,3 +1,4 @@
+/*
 var onUserModified = function(userId, doc, scope) {
   var user = Meteor.users.findOne(doc._id);
   if (user) {
@@ -29,6 +30,7 @@ Meteor.users.after.update(function(userId, doc) {
 Meteor.users.after.remove(function(userId, doc) {
   onUserModified(userId, doc, this);
 });
+*/
 /*
 Teams.after.insert(function (userId, doc) {
   Meteor.users.update(userId, {$set: {teamId: this._id}});

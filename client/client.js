@@ -1,8 +1,5 @@
 Tracker.autorun(function () {
   Meteor.subscribe("userData");
-  Meteor.subscribe('trips');
-  Meteor.subscribe('teams');
-  Meteor.subscribe('invitations');
 });
 
 Accounts.ui.config({
@@ -61,6 +58,7 @@ Template._invite_players.events({
     event.preventDefault();
     var receiverId = event.target.receiver.value;
 
+    /*
     Invitations.insert({
       receiver: receiverId,
       sendingTeam: Meteor.user().teamId
@@ -71,6 +69,7 @@ Template._invite_players.events({
         sAlert.info('Invitation sent');
       }
     });
+    */
   }
 });
 

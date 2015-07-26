@@ -70,7 +70,6 @@ natestrauser:select2@3.5.1
 nemo64:bootstrap@3.3.5_2
 nemo64:bootstrap-data@3.3.5
 npm-bcrypt@0.7.8_2
-numtel:pg-server@0.0.2
 oauth@1.1.4
 oauth2@1.1.3
 observe-sequence@1.0.6
