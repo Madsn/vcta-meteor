@@ -1,5 +1,4 @@
 Meteor.users.helpers({
-  /*
   getTeamName: function() {
     console.log('getTeamName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
@@ -41,7 +40,6 @@ Meteor.users.helpers({
     Meteor.users.direct.update(this._id,
       {$set: {cyclingDays: this.getCyclingDays(), distance: this.getTotalDistance()}});
   }
-  */
 });
 
 /*
