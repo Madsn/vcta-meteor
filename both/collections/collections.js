@@ -135,7 +135,14 @@ Schema.Teams = new SimpleSchema({
   avgDays: {
     type: Number,
     optional: false,
-    decimal: true
+    decimal: true,
+    defaultValue: 0
+  },
+  avgDistance: {
+    type: Number,
+    optional: false,
+    decimal: true,
+    defaultValue: 0
   }
 });
 

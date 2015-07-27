@@ -72,12 +72,14 @@ Teams.helpers({
     return distance;
   },
   updateCyclingDaysAndDistance: function() {
+    var membersCount = Meteor.users.find({teamId: this._id}).count();
     var cyclingDays = this.getCyclingDays();
     var totalDistance = this.getTotalDistance();
-    var avgDays = cyclingDays / Meteor.users.find({teamId: this._id}).count();
-    console.log(avgDays);
+    var avgDays = cyclingDays / membersCount;
+    var avgDistance = totalDistance / membersCount;
     Teams.direct.update(this._id,
-      {$set: {cyclingDays: cyclingDays, totalDistance: totalDistance, avgDays: avgDays}});
+      {$set: {cyclingDays: cyclingDays, totalDistance: totalDistance,
+              avgDays: avgDays, avgDistance: avgDistance}});
   }
 });
 

@@ -49,6 +49,7 @@ TabularTables.Teams = new Tabular.Table({
     { data: 'cyclingDays', title: 'Cycling days' },
     { data: 'totalDistance', title: 'Distance' },
     { data: 'avgDays', title: 'Days/member', render: function(val) {return val.toFixed(2);} },
+    { data: 'avgDistance', title: 'Distance/member', render: function(val) {return val.toFixed(2);} },
   ],
   extraFields: ['captainUserId'],
   paging: true,
