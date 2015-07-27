@@ -10,6 +10,8 @@ nemo64:bootstrap
 iron:router
 zimme:active-route
 accounts-password
+aldeed:tabular
+aldeed:simple-schema
 fortawesome:fontawesome
 aldeed:autoform
 aldeed:collection2
@@ -29,5 +31,3 @@ zimme:select2-bootstrap3-css
 juliancwirko:s-alert
 juliancwirko:s-alert-genie
 mizzao:bootboxjs
-numtel:pg-server
-meteorsteam:meteor-postgres

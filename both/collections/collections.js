@@ -1,9 +1,6 @@
-Teams = new SQL.Collection('teams');
-Trips = new SQL.Collection('trips');
-Invitations = new SQL.Collection('invitations');
-Teams.createTable({name: ['$string'], captainUserId: ['$string']}).save();
-Trips.createTable({userId: ['$string'], date: ['$datetime'], distance: ['$float']}).save();
-Invitations.createTable({receiver: ['$string'], sendingTeam: ['$number']}).save();
+Teams = new Meteor.Collection('teams');
+Trips = new Meteor.Collection('trips');
+Invitations = new Meteor.Collection('invitations');
 
 Schema = {};
 
@@ -64,7 +61,7 @@ Schema.User = new SimpleSchema({
     }
 });
 
-// Meteor.users.attachSchema(Schema.User);
+Meteor.users.attachSchema(Schema.User);
 
 Schema.Trips = new SimpleSchema({
   userId: {
@@ -104,7 +101,7 @@ Schema.Trips = new SimpleSchema({
   }
 });
 
-// Trips.attachSchema(Schema.Trips);
+Trips.attachSchema(Schema.Trips);
 
 Schema.Teams = new SimpleSchema({
   name: {
@@ -137,7 +134,7 @@ Schema.Teams = new SimpleSchema({
   }
 });
 
-// Teams.attachSchema(Schema.Teams);
+Teams.attachSchema(Schema.Teams);
 
 Schema.Invitations = new SimpleSchema({
   receiver: {
@@ -150,4 +147,4 @@ Schema.Invitations = new SimpleSchema({
   }
 });
 
-// Invitations.attachSchema(Schema.Invitations);
+Invitations.attachSchema(Schema.Invitations);

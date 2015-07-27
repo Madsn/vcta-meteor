@@ -29,7 +29,7 @@ Meteor.users.after.update(function(userId, doc) {
 Meteor.users.after.remove(function(userId, doc) {
   onUserModified(userId, doc, this);
 });
-/*
+
 Teams.after.insert(function (userId, doc) {
   Meteor.users.update(userId, {$set: {teamId: this._id}});
   var captain = Meteor.user();
@@ -51,7 +51,7 @@ Trips.after.remove(function (userId, doc) {
 Trips.after.update(function (userId, doc) {
   onTripModified(userId, doc, this);
 });
-*/
+
 Accounts.onCreateUser(function(options, user) {
   if (options.profile) {
     user.username = user.username || options.profile.name;
@@ -61,10 +61,9 @@ Accounts.onCreateUser(function(options, user) {
   }
   return user;
 });
-/*
+
 Invitations.before.insert(function(userId, doc) {
   if (Invitations.findOne({receiver: doc.receiver, sendingTeam: doc.sendingTeam, _id: {$ne: doc._id}})) {
     throw new Meteor.Error('duplicate', 'That person has already been invited');
   }
 });
-*/

@@ -42,7 +42,6 @@ Meteor.users.helpers({
   }
 });
 
-/*
 Teams.helpers({
   getCaptainName: function() {
     console.log('getCaptainName called');
@@ -85,4 +84,3 @@ Invitations.helpers({
     return user.username;
   }
 });
-*/

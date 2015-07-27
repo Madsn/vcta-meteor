@@ -1,7 +1,7 @@
 var isTeamCaptain = function(userId, doc) {
   return userId && doc.captainUserId === userId;
 };
-/*
+
 Teams.allow({
   insert: function(userId, doc) {
     return userId && Teams.find({captainUserId: userId}).count() === 0;
@@ -47,4 +47,3 @@ Invitations.allow({
     return isCaptainOfSendingTeam(userId, doc) || doc.receiver === userId;
   }
 });
-*/
