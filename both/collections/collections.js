@@ -131,6 +131,11 @@ Schema.Teams = new SimpleSchema({
     type: Number,
     optional: false,
     defaultValue: 0
+  },
+  avgDays: {
+    type: Number,
+    optional: false,
+    decimal: true
   }
 });
 
