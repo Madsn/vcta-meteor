@@ -1,0 +1,47 @@
+<template name="_team_management">
+  {{#if managementEnabled}}
+    <div class="panel panel-default">
+      {{> panel_heading title="Team management"}}
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Received Invitations</h3>
+            {{> tabular table=TabularTables.ReceivedInvitations selector=selector class="table table-striped table-hover" }}
+          </div>
+        </div>
+        {{#if currentUser.hasTeam}}
+          {{#if currentUser.isCaptain}}
+            <div class="row">
+              <div class="col-md-12">
+                {{> _invite_players }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Sent invitations</h3>
+                {{> _invitations }}
+              </div>
+            </div>
+            <div class="row">
+              <input id="deleteTeamBtn" type="button" class="btn btn-danger" value="Delete team"/>
+            </div>
+          {{else}}
+            <input id="leaveTeamBtn" type="button" class="btn btn-danger" value="Leave team"/>
+          {{/if}}
+        {{/if}}
+
+        {{#unless currentUser.hasTeam}}
+          <h3>Create a team</h3>
+          {{#autoForm collection="Teams" id="addTeamForm" type="insert"}}
+            <fieldset>
+              {{> afFormGroup name="name"}}
+            </fieldset>
+            <div>
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </div>
+          {{/autoForm}}
+        {{/unless}}
+      </div>
+    </div>
+  {{/if}}
+</template>

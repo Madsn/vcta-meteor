@@ -1,0 +1,30 @@
+<template name="dashboard">
+  <div class="page-header">
+    <h2>
+      Dashboard
+    </h2>
+  </div>
+  {{#if currentUser}}
+    <div class="row">
+      <div class="col-md-5">
+        {{> _dash_stats}}
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          <div id="team-management" class="col-md-12">
+            {{> _team_management }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            {{> _dash_trips}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> autoformModals}}
+  {{/if}}
+  {{#unless currentUser}}
+    {{> notLoggedIn}}
+  {{/unless}}
+</template>
