@@ -75,3 +75,29 @@ Template._team_management.helpers({
     return {receiver: Meteor.user()._id};
   }
 });
+
+Template.endomondo.helpers({
+  loadingEndomondo: function() {
+    return Session.get('loadingEndomondo', false);
+  }
+});
+
+Template.endomondo.events({
+  'submit #getWorkouts': function(event) {
+    event.preventDefault();
+    Session.set('loadingEndomondo', true);
+
+    Meteor.call('getWorkouts', event.target.username.value, event.target.password.value, function(err, response) {
+      Session.set('loadingEndomondo', false);
+      if (err) {
+        sAlert.error(err.reason);
+      } else {
+        if (response.statusCode === 204) {
+          sAlert.info('No recent trips found on endomondo');
+        } else {
+          sAlert.info(response);
+        }
+      }
+    });
+  }
+})

@@ -1,0 +1,12 @@
+<template name="endomondo">
+  {{#if loadingEndomondo}}
+    Loading....
+  {{/if}}
+  {{#unless loadingEndomondo}}
+    <form id="getWorkouts">
+      <input type="text" name="username" placeholder="username">
+      <input type="password" name="password" placeholder="password">
+      <input type="submit" class="btn btn-primary" value="Get workouts">
+    </form>
+  {{/unless}}
+</template>
