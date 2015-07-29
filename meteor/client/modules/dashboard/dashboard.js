@@ -94,6 +94,12 @@ Template.endomondo.helpers({
   },
   endomondoAuthInfo: function() {
     return Session.get('endomondoAuthInfo', false);
+  },
+  endomondoTrips: function() {
+    return Session.get('endomondoTrips', false);
+  },
+  loadingEndomondoTrips: function() {
+    return Session.get('loadingEndomondoTrips', false);
   }
 });
 
@@ -108,25 +114,31 @@ var callGetWorkouts = function(authInfo) {
         sAlert.info('No recent trips found on endomondo');
       } else {
         var trips = JSON.parse(response.content);
+        Session.set('endomondoTrips', trips);
         sAlert.info(trips.length + ' trips fetched from endomondo');
       }
     }
+    Session.set('loadingEndomondoTrips', false);
   });
 }
 
 Template.endomondo.events({
   'submit #getWorkouts': function(event) {
+    Session.set('loadingEndomondoTrips', true);
     event.preventDefault();
     var authInfo = {username: event.target.username.value, password: event.target.password.value};
     Session.set('endomondoAuthInfo', authInfo);
     callGetWorkouts(authInfo);
   },
   'submit #refreshWorkouts': function(event) {
+    Session.set('endomondoTrips', false);
+    Session.set('loadingEndomondoTrips', true);
     event.preventDefault();
     var authInfo = Session.get('endomondoAuthInfo');
     callGetWorkouts(authInfo);
   },
   'click #clearAuthInfo': function(event) {
     Session.set('endomondoAuthInfo', false);
+    Session.set('endomondoTrips', false);
   }
 });
