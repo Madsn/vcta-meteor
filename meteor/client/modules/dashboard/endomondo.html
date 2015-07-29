@@ -3,18 +3,26 @@
     Loading....
   {{/if}}
   {{#unless loadingEndomondo}}
-    <form id="getWorkouts">
-      <fieldset>
-        <div class="form-group">
-          <label for="endomondoUsername">Username</label>
-          <input id="endomondoUsername" type="text" class="form-control" name="username" placeholder="username">
-        </div>
-        <div class="form-group">
-          <label for="endomondoPassword">Password</label>
-          <input id="endomondoPassword" type="password" name="password" class="form-control" placeholder="password">
-        </div>
-      </fieldset>
-      <button type="submit" class="btn btn-primary pull-right">Get workouts</button>
-    </form>
+      {{#if endomondoAuthInfo}}
+        <form id="refreshWorkouts">
+          <button type="submit" class="btn btn-primary pull-right">Refresh workouts</button>
+        </form>
+        <button class="btn btn-danger pull-right" id="clearAuthInfo">Clear username/password</button>
+      {{/if}}
+      {{#unless endomondoAuthInfo}}
+        <form id="getWorkouts">
+          <fieldset>
+            <div class="form-group">
+              <label for="endomondoUsername">Username</label>
+              <input id="endomondoUsername" type="text" class="form-control" name="username" placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="endomondoPassword">Password</label>
+              <input id="endomondoPassword" type="password" name="password" class="form-control" placeholder="password">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary pull-right">Get workouts</button>
+        </form>
+      {{/unless}}
   {{/unless}}
 </template>

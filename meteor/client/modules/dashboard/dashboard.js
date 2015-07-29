@@ -91,26 +91,42 @@ Template._team_management.helpers({
 Template.endomondo.helpers({
   loadingEndomondo: function() {
     return Session.get('loadingEndomondo', false);
+  },
+  endomondoAuthInfo: function() {
+    return Session.get('endomondoAuthInfo', false);
   }
 });
+
+var callGetWorkouts = function(authInfo) {
+  Session.set('loadingEndomondo', false);
+  Meteor.call('getWorkouts', authInfo.username, authInfo.password, function(err, response) {
+    Session.set('loadingEndomondo', false);
+    if (err) {
+      sAlert.error(err.reason);
+    } else {
+      if (response.statusCode === 204) {
+        sAlert.info('No recent trips found on endomondo');
+      } else {
+        var trips = JSON.parse(response.content);
+        sAlert.info(trips.length + ' trips fetched from endomondo');
+      }
+    }
+  });
+}
 
 Template.endomondo.events({
   'submit #getWorkouts': function(event) {
     event.preventDefault();
-    Session.set('loadingEndomondo', true);
-
-    Meteor.call('getWorkouts', event.target.username.value, event.target.password.value, function(err, response) {
-      Session.set('loadingEndomondo', false);
-      if (err) {
-        sAlert.error(err.reason);
-      } else {
-        if (response.statusCode === 204) {
-          sAlert.info('No recent trips found on endomondo');
-        } else {
-          var trips = JSON.parse(response.content);
-          sAlert.info(trips.length + ' trips fetched from endomondo');
-        }
-      }
-    });
+    var authInfo = {username: event.target.username.value, password: event.target.password.value};
+    Session.set('endomondoAuthInfo', authInfo);
+    callGetWorkouts(authInfo);
+  },
+  'submit #refreshWorkouts': function(event) {
+    event.preventDefault();
+    var authInfo = Session.get('endomondoAuthInfo');
+    callGetWorkouts(authInfo);
+  },
+  'click #clearAuthInfo': function(event) {
+    Session.set('endomondoAuthInfo', false);
   }
-})
+});
