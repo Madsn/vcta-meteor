@@ -4,9 +4,17 @@
   {{/if}}
   {{#unless loadingEndomondo}}
     <form id="getWorkouts">
-      <input type="text" name="username" placeholder="username">
-      <input type="password" name="password" placeholder="password">
-      <input type="submit" class="btn btn-primary" value="Get workouts">
+      <fieldset>
+        <div class="form-group">
+          <label for="endomondoUsername">Username</label>
+          <input id="endomondoUsername" type="text" class="form-control" name="username" placeholder="username">
+        </div>
+        <div class="form-group">
+          <label for="endomondoPassword">Password</label>
+          <input id="endomondoPassword" type="password" name="password" class="form-control" placeholder="password">
+        </div>
+      </fieldset>
+      <button type="submit" class="btn btn-primary pull-right">Get workouts</button>
     </form>
   {{/unless}}
 </template>

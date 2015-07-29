@@ -1,6 +1,18 @@
 Template._dash_trips.helpers({
   tripsSelector: function() {
     return {userId: Meteor.user()._id};
+  },
+  importFromEndomondo: function() {
+    return Session.get('importFromEndomondo', false);
+  }
+});
+
+Template._dash_trips.events({
+  'click #importFromEndomondo': function() {
+    Session.set('importFromEndomondo', true);
+  },
+  'click #closeEndomondoImport': function() {
+    Session.set('importFromEndomondo', false);
   }
 });
 
@@ -95,7 +107,8 @@ Template.endomondo.events({
         if (response.statusCode === 204) {
           sAlert.info('No recent trips found on endomondo');
         } else {
-          sAlert.info(response);
+          var trips = JSON.parse(response.content);
+          sAlert.info(trips.length + ' trips fetched from endomondo');
         }
       }
     });

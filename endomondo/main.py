@@ -1,4 +1,5 @@
 from endomondo import Endomondo
+import json
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -11,17 +12,18 @@ def getWorkouts():
   print password
   endomondo = Endomondo(username, password)
   workouts = endomondo.workout_list()
-  ret = ''
+  ret = []
   for w in workouts:
-    print w.data
-    if hasattr(w, 'distance_km'):
-      ret += w.data['distance_km'] + ' - ' + w.data['start_time']
+    if 'distance_km' in w.data and 'start_time' in w.data:
+      ret.append({w.data['start_time']: w.data['distance_km']})
     else:
       print 'no distance_km attribute'
+  retJson = json.dumps(ret)
+  print retJson
   if len(ret) == 0:
     return ret, 204 # 204 - No content
   else:
-    return ret, 200
+    return retJson, 200
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug=True)
