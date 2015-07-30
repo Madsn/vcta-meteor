@@ -109,7 +109,20 @@ var callGetWorkouts = function(authInfo) {
       if (response.statusCode === 204) {
         sAlert.info('No recent trips found on endomondo');
       } else {
-        var trips = JSON.parse(response.content);
+        var receivedTrips = JSON.parse(response.content);
+        var existingTrips = Trips.find({userId: Meteor.user()._id, endomondoId: {$ne: null}}).fetch();
+        var trips = [];
+        receivedTrips.forEach(function(el){
+          var found = false;
+          for (var i = 0; i< existingTrips.length; i++) {
+            if (parseInt(existingTrips[i].endomondoId) === parseInt(el.id)) {
+              found = true;
+            }
+          }
+          if (!found) {
+            trips.push(el);
+          }
+        });
         Session.set('endomondoTrips', trips);
         sAlert.info(trips.length + ' trips fetched from endomondo');
       }
@@ -149,6 +162,15 @@ Template.endomondo.events({
     } else {
       sAlert.error('That trip has already been imported');
     }
+    var updatedTrips = Session.get('endomondoTrips');
+    lodash.remove(updatedTrips, function(x){
+      console.log(x);
+      console.log(endomondoId);
+      var ret = parseInt(x.id) === parseInt(endomondoId);
+      console.log(ret);
+      return ret;
+    });
+    Session.set('endomondoTrips', updatedTrips);
   }
 });
 

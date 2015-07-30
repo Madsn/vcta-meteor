@@ -34,3 +34,4 @@ mizzao:bootboxjs
 http
 dispatch:spinner
 joshdellay:meteor-ladda-bootstrap
+stevezhu:lodash
