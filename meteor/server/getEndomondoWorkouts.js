@@ -2,7 +2,6 @@ Meteor.methods({
   getWorkouts: function(username, password) {
     try {
       var result = HTTP.call('POST', 'http://localhost:5000/', {params: {username: username, password: password}});
-      console.log(result);
       return result;
     } catch (ex) {
       throw new Meteor.Error('endomondo-sync-failed', 'Fetching workouts from endomondo failed');

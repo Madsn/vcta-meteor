@@ -1,11 +1,5 @@
 <template name="endomondo">
-  {{#if loadingEndomondo}}
-    Loading....
-  {{/if}}
-  {{#unless loadingEndomondo}}
-    {{#if loadingEndomondoTrips}}
-      Loading trips..
-    {{/if}}
+  {{#spinner type="wave" visible=loadingEndomondoTrips}}
     {{#if endomondoTrips}}
       <ul>
       {{#each endomondoTrips}}
@@ -14,25 +8,31 @@
       </ul>
     {{/if}}
     {{#if endomondoAuthInfo}}
-      <form id="refreshWorkouts">
-        <button type="submit" class="btn btn-primary pull-right">Refresh workouts</button>
-      </form>
-      <button class="btn btn-danger pull-right" id="clearAuthInfo">Clear username/password</button>
+      <div class="row">
+        <form id="refreshWorkouts">
+          <button id="refreshWorkoutsButton" type="submit" class="btn btn-primary pull-right">
+            Refresh workouts
+          </button>
+        </form>
+        <button class="btn btn-danger pull-right" id="clearAuthInfo">Clear username/password</button>
+      </div>
     {{/if}}
     {{#unless endomondoAuthInfo}}
-      <form id="getWorkouts">
-        <fieldset>
-          <div class="form-group">
-            <label for="endomondoUsername">Username</label>
-            <input id="endomondoUsername" type="text" class="form-control" name="username" placeholder="username">
-          </div>
-          <div class="form-group">
-            <label for="endomondoPassword">Password</label>
-            <input id="endomondoPassword" type="password" name="password" class="form-control" placeholder="password">
-          </div>
-        </fieldset>
-        <button type="submit" class="btn btn-primary pull-right">Get workouts</button>
-      </form>
+      <div class="col-md-6 pull-right">
+        <form id="getWorkouts">
+          <fieldset>
+            <div class="form-group">
+              <label for="endomondoUsername">Username</label>
+              <input id="endomondoUsername" type="text" class="form-control" name="username" placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="endomondoPassword">Password</label>
+              <input id="endomondoPassword" type="password" name="password" class="form-control" placeholder="password">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary pull-right">Get workouts</button>
+        </form>
+      </div>
     {{/unless}}
-  {{/unless}}
+  {{/spinner}}
 </template>
