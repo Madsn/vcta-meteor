@@ -3,7 +3,7 @@
     {{#if endomondoTrips}}
       <ul>
       {{#each endomondoTrips}}
-        <li>{{start_time}} - {{distance_km}}</li>
+        <li>{{start_time}} - {{distance_km}} - {{id}} <a class="clickable endomondoTrip" data-id="{{id}}" data-distance="{{distance_km}}" data-start="{{start_time}}">Add</a></li>
       {{/each}}
       </ul>
     {{/if}}

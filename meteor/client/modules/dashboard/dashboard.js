@@ -136,5 +136,25 @@ Template.endomondo.events({
   'click #clearAuthInfo': function(event) {
     Session.set('endomondoAuthInfo', false);
     Session.set('endomondoTrips', false);
+  },
+  'click .endomondoTrip': function(event) {
+    var endomondoId = event.target.dataset.id;
+    if (Trips.find({userId: Meteor.user()._id, endomondoId: endomondoId}).count() == 0) {
+      Trips.insert({
+        endomondoId: endomondoId,
+        distance: event.target.dataset.distance,
+        date: new Date(event.target.dataset.start.substr(0,10))
+      });
+      sAlert.info('Trip was imported from endomondo');
+    } else {
+      sAlert.error('That trip has already been imported');
+    }
+  }
+});
+
+Template.deleteTripButton.events({
+  'click .deleteTrip': function() {
+    Trips.remove(this._id);
+    sAlert.info('Trip deleted');
   }
 });

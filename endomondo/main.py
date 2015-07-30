@@ -15,7 +15,9 @@ def getWorkouts():
   ret = []
   for w in workouts:
     if 'distance_km' in w.data and 'start_time' in w.data:
-      ret.append({'start_time': w.data['start_time'], 'distance_km': w.data['distance_km']})
+      ret.append({'id': w.data['id'],
+                  'start_time': w.data['start_time'],
+                  'distance_km': w.data['distance_km']})
     else:
       print 'no distance_km attribute'
   retJson = json.dumps(ret)

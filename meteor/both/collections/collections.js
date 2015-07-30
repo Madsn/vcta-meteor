@@ -74,8 +74,10 @@ Schema.Trips = new SimpleSchema({
   date: {
     type: Date,
     optional: false,
+    /*
     min: new Date(2015, 7, 2),
     max: new Date(2015, 7, 32),
+    */
     autoform: {
       afFieldInput: {
         type: 'bootstrap-datepicker',
@@ -89,15 +91,19 @@ Schema.Trips = new SimpleSchema({
   },
   distance: {
     type: Number,
-    optional: false,
     decimal: true,
-    min: 0,
-    max: 350,
+    optional: false,
+    min: 0.0,
+    max: 350.0,
     autoform: {
       afFieldInput: {
         type: 'number'
       }
     }
+  },
+  endomondoId: {
+    type: String,
+    optional: true
   }
 });
 

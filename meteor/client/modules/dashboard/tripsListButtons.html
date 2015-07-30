@@ -1,11 +1,11 @@
 <template name="deleteTripButton">
-  {{#afModal class="clickable" collection="Trips" operation="remove" doc=_id}}
+  <a data-tripId="{{_id}}" class="clickable deleteTrip">
     <i class="glyphicon glyphicon-trash"></i>
-  {{/afModal}}
+  </a>
 </template>
 
 <template name="editTripButton">
-  {{#afModal class="clickable" collection="Trips" operation="update" doc=_id omitFields="userId"}}
+  {{#afModal class="clickable" collection="Trips" operation="update" doc=_id omitFields="userId, endomondoId"}}
     <i class="glyphicon glyphicon-pencil"></i>
   {{/afModal}}
 </template>
