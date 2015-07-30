@@ -89,9 +89,6 @@ Template._team_management.helpers({
 });
 
 Template.endomondo.helpers({
-  loadingEndomondo: function() {
-    return Session.get('loadingEndomondo', false);
-  },
   endomondoAuthInfo: function() {
     return Session.get('endomondoAuthInfo', false);
   },
@@ -103,10 +100,9 @@ Template.endomondo.helpers({
   }
 });
 
+
 var callGetWorkouts = function(authInfo) {
-  Session.set('loadingEndomondo', false);
   Meteor.call('getWorkouts', authInfo.username, authInfo.password, function(err, response) {
-    Session.set('loadingEndomondo', false);
     if (err) {
       sAlert.error(err.reason);
     } else {
@@ -120,7 +116,7 @@ var callGetWorkouts = function(authInfo) {
     }
     Session.set('loadingEndomondoTrips', false);
   });
-}
+};
 
 Template.endomondo.events({
   'submit #getWorkouts': function(event) {
