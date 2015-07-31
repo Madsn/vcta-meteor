@@ -7,10 +7,10 @@
       {{/each}}
       </ul>
     {{/if}}
-    {{#unless endomondoTrips}}
-      <p>No additional valid trips found for this endomondo user</p>
-    {{/unless}}
     {{#if endomondoAuthInfo}}
+      {{#unless endomondoTrips}}
+        <p>No additional valid trips found for this endomondo user</p>
+      {{/unless}}
       <form id="refreshWorkouts">
         <button id="refreshWorkoutsButton" type="submit" class="btn btn-primary pull-right">
           Refresh workouts
