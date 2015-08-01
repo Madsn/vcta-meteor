@@ -71,14 +71,15 @@ TabularTables.Trips = new Tabular.Table({
         return moment(val).format('DD MMMM');
       }
     },
-    { data: 'distance', title: 'Distance',
+    { data: 'distance', title: 'Distance (km)',
       render: function(val) {
-        return val + ' km';
+        return val.toFixed(2);
       }
     },
     { tmpl: Meteor.isClient && Template.deleteTripButton },
     { tmpl: Meteor.isClient && Template.editTripButton }
   ],
+  extraFields: ['endomondoId'], // TODO - some styling indication in table for imported trips
   lengthMenu: [[50, -1], [50, "All"]],
   paging: true,
   searching: false,

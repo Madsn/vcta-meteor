@@ -1,11 +1,39 @@
 <template name="endomondo">
   {{#spinner type="wave" visible=loadingEndomondoTrips}}
     {{#if endomondoTrips}}
-      <ul>
-      {{#each endomondoTrips}}
-        <li>{{start_time}} - {{distance_km}} - {{id}} <a class="clickable endomondoTrip" data-id="{{id}}" data-distance="{{distance_km}}" data-start="{{start_time}}">Add</a></li>
-      {{/each}}
-      </ul>
+      <div class="col-md-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>
+                Start time
+              </th>
+              <th>
+                Distance (km)
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each endomondoTrips}}
+              <tr>
+                <td>
+                  {{formatStartTime start_time}}
+                </td>
+                <td>
+                  {{formatDistance distance_km}}
+                </td>
+                <td>
+                  <a class="clickable endomondoTrip">
+                    <i data-id="{{id}}" data-distance="{{distance_km}}" data-start="{{start_time}}" class="glyphicon glyphicon-plus"></i>
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     {{/if}}
     {{#if endomondoAuthInfo}}
       {{#unless endomondoTrips}}

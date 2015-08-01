@@ -97,6 +97,12 @@ Template.endomondo.helpers({
   },
   loadingEndomondoTrips: function() {
     return Session.get('loadingEndomondoTrips', false);
+  },
+  formatStartTime: function(startTime) {
+    return moment(startTime).format('MMMM DD YYYY, HH:MM');
+  },
+  formatDistance: function(distance) {
+    return distance.toFixed(2);
   }
 });
 
@@ -152,11 +158,13 @@ Template.endomondo.events({
   },
   'click .endomondoTrip': function(event) {
     var endomondoId = event.target.dataset.id;
+    console.log(event.target.dataset.start);
+    var date = new Date(event.target.dataset.start.substr(0,10));
     if (Trips.find({userId: Meteor.user()._id, endomondoId: endomondoId}).count() == 0) {
       Trips.insert({
         endomondoId: endomondoId,
         distance: event.target.dataset.distance,
-        date: new Date(event.target.dataset.start.substr(0,10))
+        date: date
       });
       sAlert.info('Trip was imported from endomondo');
     } else {
@@ -164,10 +172,7 @@ Template.endomondo.events({
     }
     var updatedTrips = Session.get('endomondoTrips');
     lodash.remove(updatedTrips, function(x){
-      console.log(x);
-      console.log(endomondoId);
       var ret = parseInt(x.id) === parseInt(endomondoId);
-      console.log(ret);
       return ret;
     });
     Session.set('endomondoTrips', updatedTrips);
