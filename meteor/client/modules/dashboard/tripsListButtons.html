@@ -9,3 +9,9 @@
     <i class="glyphicon glyphicon-pencil"></i>
   {{/afModal}}
 </template>
+
+<template name="importedFromEndomondo">
+  {{#if endomondoId}}
+    <a href="http://www.endomondo.com/workouts/{{endomondoId}}"><img src="images/endomondo.png" height="18px"></a>
+  {{/if}}
+</template>

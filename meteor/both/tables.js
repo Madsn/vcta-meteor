@@ -77,7 +77,8 @@ TabularTables.Trips = new Tabular.Table({
       }
     },
     { tmpl: Meteor.isClient && Template.deleteTripButton },
-    { tmpl: Meteor.isClient && Template.editTripButton }
+    { tmpl: Meteor.isClient && Template.editTripButton },
+    { tmpl: Meteor.isClient && Template.importedFromEndomondo }
   ],
   extraFields: ['endomondoId'], // TODO - some styling indication in table for imported trips
   lengthMenu: [[50, -1], [50, "All"]],
