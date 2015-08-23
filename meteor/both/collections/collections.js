@@ -55,6 +55,7 @@ Schema.User = new SimpleSchema({
     },
     distance: {
       type: Number,
+      decimal: true,
       optional: false,
       defaultValue: 0,
       min: 0
@@ -135,6 +136,7 @@ Schema.Teams = new SimpleSchema({
   },
   totalDistance: {
     type: Number,
+    decimal: true,
     optional: false,
     defaultValue: 0
   },
