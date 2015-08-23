@@ -1,0 +1,13 @@
+<template name="user">
+  <div class="page-header">
+    <h2>Details for user: {{username}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      {{> userStats userArg=.}}
+    </div>
+    <div class="col-md-7">
+      {{> tabular table=TabularTables.TripsReadOnly selector=tripsSelector class="table table-striped table-hover" }}
+    </div>
+  </div>
+</template>
