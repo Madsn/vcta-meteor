@@ -128,7 +128,7 @@ TabularTables.Members = new Tabular.Table({
     { data: 'cyclingDays', title: 'Cycling days' },
     { data: 'distance', title: 'Distance' }
   ],
-  paging: false,
+  paging: true,
   searching: false,
   info: false,
   language: {

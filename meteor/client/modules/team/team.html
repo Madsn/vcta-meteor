@@ -1,0 +1,56 @@
+<template name="team">
+  <div class="page-header">
+    <h2>Details for team: {{name}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      {{> teamStats}}
+    </div>
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        {{> panel_heading title="Team members"}}
+        <div class="panel-body">
+          {{> tabular table=TabularTables.Members selector=membersSelector class="table table-striped table-hover"}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="teamStats">
+  <div class="panel panel-default">
+    {{> panel_heading title="Statistics"}}
+    <div class="panel-body">
+      <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Team name</td>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <td>Total distance</td>
+            <td>{{totalDistance}}</td>
+          </tr>
+          <tr>
+            <td>Distance/member</td>
+            <td>{{avgDistance}}</td>
+          </tr>
+          <tr>
+            <td>Cycling days</td>
+            <td>{{cyclingDays}}</td>
+          </tr>
+          <tr>
+            <td>Days/member</td>
+            <td>{{avgDays}}</td>
+          </tr>
+          <tr>
+            <td>Captain</td>
+            <td><a href="/user/{{getCaptainName}}">{{getCaptainName}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
