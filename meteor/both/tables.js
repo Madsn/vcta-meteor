@@ -20,7 +20,7 @@ TabularTables.Players = new Tabular.Table({
       }
     },
     { data: 'cyclingDays', title: 'Cycling days' },
-    { data: 'distance', title: 'Distance' }
+    { data: 'distance', title: 'Distance', render: function(val) {return val.toFixed(2);}  }
   ],
   paging: true,
   lengthMenu: [[50, -1], [50, "All"]],
@@ -47,7 +47,7 @@ TabularTables.Teams = new Tabular.Table({
       }
     },
     { data: 'cyclingDays', title: 'Cycling days' },
-    { data: 'totalDistance', title: 'Distance' },
+    { data: 'totalDistance', title: 'Distance', render: function(val) {return val.toFixed(2);}  },
     { data: 'avgDays', title: 'Days/member', render: function(val) {return val.toFixed(2);} },
     { data: 'avgDistance', title: 'Distance/member', render: function(val) {return val.toFixed(2);} },
   ],
