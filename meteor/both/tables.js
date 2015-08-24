@@ -6,6 +6,7 @@ TabularTables.Players = new Tabular.Table({
   name: 'PlayerList',
   collection: Meteor.users,
   columns: [
+    { data: null, title: '', orderable: false },
     { data: 'username', title: 'Name',
       render: function(val) {
         return '<a href="/user/' + val + '">' + val + '</a>';
@@ -29,6 +30,10 @@ TabularTables.Players = new Tabular.Table({
   language: {
     zeroRecords: 'No users exist yet'
   },
+  createdRow: function( row, data, dataIndex ) {
+    var firstCell = row.querySelector('td');
+    firstCell.innerHTML = dataIndex + 1;
+  },
   sub: new SubsManager()
 });
 
@@ -36,6 +41,7 @@ TabularTables.Teams = new Tabular.Table({
   name: 'TeamsList',
   collection: Teams,
   columns: [
+    { data: null, title: '', orderable: false },
     { data: 'name', title: 'Name',
       render: function(val) {
         return '<a href="/team/' + val + '">' + val + '</a>';
@@ -58,6 +64,10 @@ TabularTables.Teams = new Tabular.Table({
   info: false,
   language: {
     zeroRecords: 'Fetching teams'
+  },
+  createdRow: function( row, data, dataIndex ) {
+    var firstCell = row.querySelector('td');
+    firstCell.innerHTML = dataIndex + 1;
   },
   sub: new SubsManager()
 });
