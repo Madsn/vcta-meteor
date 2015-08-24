@@ -21,3 +21,7 @@ AutoForm.hooks({
     },
   }
 });
+
+Handlebars.registerHelper('toFixed', function(val) {
+  return val.toFixed(2);
+});

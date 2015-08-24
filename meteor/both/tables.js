@@ -136,7 +136,7 @@ TabularTables.Members = new Tabular.Table({
       }
     },
     { data: 'cyclingDays', title: 'Cycling days' },
-    { data: 'distance', title: 'Distance' }
+    { data: 'distance', title: 'Distance', render: function(val) {return val.toFixed(2);}   }
   ],
   paging: true,
   searching: false,
