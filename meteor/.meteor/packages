@@ -35,3 +35,4 @@ http
 dispatch:spinner
 joshdellay:meteor-ladda-bootstrap
 stevezhu:lodash
+email

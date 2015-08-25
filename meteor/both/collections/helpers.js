@@ -43,6 +43,11 @@ Meteor.users.helpers({
 });
 
 Teams.helpers({
+  getCaptain: function() {
+    console.log('getCaptain called');
+    var user = Meteor.users.findOne({_id: this.captainUserId});
+    return user;
+  },
   getCaptainName: function() {
     console.log('getCaptainName called');
     // TODO - refactor: https://dweldon.silvrback.com/common-mistakes
@@ -88,5 +93,13 @@ Invitations.helpers({
     console.log('getReceiverName');
     var user = Meteor.users.findOne({_id: this.receiver});
     return user.username;
+  },
+  getReceiver: function() {
+    var user = Meteor.users.findOne({_id: this.receiver});
+    return user;
+  },
+  getTeam: function() {
+    var team = Teams.findOne({_id: this.sendingTeam});
+    return team;
   }
 });
