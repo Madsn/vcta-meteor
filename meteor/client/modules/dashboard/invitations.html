@@ -33,7 +33,7 @@
 </template>
 
 <template name="declineInvitationButton">
-  {{#afModal class="clickable" collection="Invitations" operation="remove" doc=_id}}
+  {{#afModal class="clickable" collection="Invitations" meteormethod ="rejectInvitation" operation="remove" doc=_id}}
     <i class="glyphicon glyphicon-remove"></i>
   {{/afModal}}
 </template>

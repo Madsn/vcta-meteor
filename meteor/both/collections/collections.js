@@ -120,7 +120,7 @@ Schema.Teams = new SimpleSchema({
   captainUserId: {
     type: String,
     optional: false,
-    autoValue: function() {
+    defaultValue: function() {
       return Meteor.user()._id;
     },
     custom: function() {
