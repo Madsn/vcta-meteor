@@ -53,11 +53,7 @@ Template._invite_players.events({
     // Prevent default browser form submit
     event.preventDefault();
     var receiverId = event.target.receiver.value;
-
-    Invitations.insert({
-      receiver: receiverId,
-      sendingTeam: Meteor.user().teamId
-    }, function(err) {
+    Meteor.call('sendInvitation', receiverId, function(err) {
       if (err) {
         sAlert.error(err.reason);
       } else {
