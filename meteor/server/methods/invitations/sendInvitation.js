@@ -15,7 +15,7 @@ Meteor.methods({
         + 'Log in at <a href="http://www.systematic-pf.dk">systeamtic-pf.dk</a> to accept or decline the offer.' ;
 
       var emailOptions = {
-        from: 'vcta@systematic-pf.dk',
+        from: orion.config.get('email address'),
         to: receiver.emails[0].address,
         subject: subject,
         html: mailBody

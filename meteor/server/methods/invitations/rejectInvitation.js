@@ -24,7 +24,7 @@ Meteor.methods({
         + ',\n\n' + Meteor.user().username + ' has declined to join your team: "' + team.name + '".';
 
       var emailOptions = {
-        from: 'vcta@systematic-pf.dk',
+        from: orion.config.get('email address'),
         to: captainEmail,
         subject: subject,
         html: mailBody

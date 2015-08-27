@@ -30,7 +30,7 @@ Meteor.methods({
         + captain.username + ' has now joined your team, "' + team.name + '".';
 
       var emailOptions = {
-        from: 'vcta@systematic-pf.dk',
+        from: orion.config.get('email address'),
         to: captainEmail,
         subject: subject,
         text: mailBody
