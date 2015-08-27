@@ -1,6 +1,39 @@
-Teams = new Meteor.Collection('teams');
-Trips = new Meteor.Collection('trips');
-Invitations = new Meteor.Collection('invitations');
+Teams = new orion.collection('teams', {
+  singularName: 'team', // The name of one of these items
+  pluralName: 'teams', // The name of more than one of these items
+  link: {
+    title: 'Teams'
+  },
+  tabular: {
+    columns: [
+      { data: 'name', title: 'name' },
+    ]
+  }
+});
+
+Trips = new orion.collection('trips', {
+  singularName: 'trip', // The name of one of these items
+  pluralName: 'trips', // The name of more than one of these items
+  link: {
+    title: 'Trips'
+  },
+  tabular: {
+    columns: [
+      { data: "userId", title: 'user' },
+    ]
+  }
+});
+Invitations = new orion.collection('teamInvitations', {
+  singularName: 'invitation', // The name of one of these items
+  pluralName: 'invitations', // The name of more than one of these items
+  link: {
+    title: 'Invitations'
+  },
+  tabular: {
+    columns: [
+    ]
+  }
+});
 
 Schema = {};
 

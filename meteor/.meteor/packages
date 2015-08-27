@@ -36,3 +36,5 @@ dispatch:spinner
 joshdellay:meteor-ladda-bootstrap
 stevezhu:lodash
 email
+orionjs:core
+orionjs:bootstrap

@@ -10,7 +10,7 @@ Meteor.publish('trips', function() {
   return Trips.find();
 });
 
-Meteor.publish('invitations', function() {
+Meteor.publish('teamInvitations', function() {
   return Invitations.find();
   //return Invitations.find({sendingTeam: Meteor.user().teamId});
 });
