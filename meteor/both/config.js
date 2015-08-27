@@ -31,3 +31,9 @@ orion.config.add('endomondo service url', 'config', {
                     label: 'URL to the endomondo sync service',
                     public: false
                 });
+
+orion.config.add('signup enabled', 'config', {
+                    type: Boolean,
+                    label: 'Creation of new users enabled?',
+                    public: false
+                });
