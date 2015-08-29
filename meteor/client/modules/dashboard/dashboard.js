@@ -29,10 +29,27 @@ Template.acceptInvitationButton.events({
         Meteor.call('acceptInvitation', event.target.id, function(err) {
           if (err) {
             sAlert.error('Error accepting invitation:<br/>' + err.reason);
+            console.log('Error accepting invitation:<br/>' + err.reason);
           } else {
             sAlert.info('Team invitation accepted');
           }
         })
+      }
+    });
+  },
+  'click .rejectInvitation': function(event) {
+    console.log('rejecting invitation');
+    console.log(this);
+    bootbox.confirm('Are you sure you want to reject this invitation?', function(result) {
+      if (result) {
+        Meteor.call('rejectInvitation', event.target.id, function(err) {
+          if (err) {
+            sAlert.error('Error rejecting invitation:<br/>' + err.reason);
+            console.log('Error rejecting invitation:<br/>' + err.reason);
+          } else {
+            sAlert.info('Invitation rejected');
+          }
+        });
       }
     });
   }
