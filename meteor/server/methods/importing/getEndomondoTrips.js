@@ -1,10 +1,10 @@
 Meteor.methods({
-  getWorkouts: function(username, password) {
+  getEndomondoTrips: function(username, password) {
     try {
       var result = HTTP.call('POST', orion.config.get('endomondo service url'), {params: {username: username, password: password}});
       return result;
     } catch (ex) {
-      throw new Meteor.Error('endomondo-sync-failed', 'Fetching workouts from endomondo failed');
+      throw new Meteor.Error('endomondo-sync-failed', 'Fetching trips from endomondo failed');
     }
     /*
       if (error) {

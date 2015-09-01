@@ -121,7 +121,7 @@ Template.endomondo.helpers({
 
 
 var callGetWorkouts = function(authInfo) {
-  Meteor.call('getWorkouts', authInfo.username, authInfo.password, function(err, response) {
+  Meteor.call('getEndomondoTrips', authInfo.username, authInfo.password, function(err, response) {
     if (err) {
       sAlert.error(err.reason);
     } else {
