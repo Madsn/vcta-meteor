@@ -14,3 +14,8 @@ Meteor.publish('teamInvitations', function() {
   return Invitations.find();
   //return Invitations.find({sendingTeam: Meteor.user().teamId});
 });
+
+Meteor.publish('notifications', function() {
+  if (this.userId)
+    return Notifications.find({userId: this.userId});
+});

@@ -23,11 +23,24 @@ Trips = new orion.collection('trips', {
     ]
   }
 });
+
 Invitations = new orion.collection('teamInvitations', {
   singularName: 'invitation', // The name of one of these items
   pluralName: 'invitations', // The name of more than one of these items
   link: {
     title: 'Invitations'
+  },
+  tabular: {
+    columns: [
+    ]
+  }
+});
+
+Notifications = new orion.collection('notifications', {
+  singularName: 'notification',
+  pluralName: 'notifications',
+  link: {
+    title: 'Notifications'
   },
   tabular: {
     columns: [
@@ -201,3 +214,16 @@ Schema.Invitations = new SimpleSchema({
 });
 
 Invitations.attachSchema(Schema.Invitations);
+
+Schema.Notifications = new SimpleSchema({
+  userId: {
+    type: String,
+    optional: false
+  },
+  message: {
+    type: String,
+    optional: false
+  }
+});
+
+Notifications.attachSchema(Schema.Notifications);

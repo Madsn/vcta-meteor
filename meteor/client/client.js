@@ -3,6 +3,7 @@ Tracker.autorun(function () {
   Meteor.subscribe('trips');
   Meteor.subscribe('teams');
   Meteor.subscribe('invitations');
+  Meteor.subscribe('notifications');
 });
 
 Accounts.ui.config({

@@ -47,3 +47,15 @@ Invitations.allow({
     return isCaptainOfSendingTeam(userId, doc) || doc.receiver === userId;
   }
 });
+
+Notifications.allow({
+  insert: function(userId, doc) {
+    return true;
+  },
+  update: function(userId, doc) {
+    return true;
+  },
+  remove: function(userId, doc) {
+    return true;
+  }
+});
