@@ -103,3 +103,9 @@ Invitations.helpers({
     return team;
   }
 });
+
+Notifications.helpers({
+  timeAgo: function() {
+    return moment(this.dateTime).fromNow();
+  }
+});

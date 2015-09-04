@@ -220,6 +220,11 @@ Schema.Notifications = new SimpleSchema({
     type: String,
     optional: false
   },
+  dateTime: {
+    type: Date,
+    optional: false,
+    defaultValue: new Date()
+  },
   message: {
     type: String,
     optional: false

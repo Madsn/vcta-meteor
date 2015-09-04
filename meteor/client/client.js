@@ -26,3 +26,19 @@ AutoForm.hooks({
 Handlebars.registerHelper('toFixed', function(val) {
   return val.toFixed(2);
 });
+
+Template.layout.events({
+  'click #addNotification': function() {
+    Services.Notifications.add(Meteor.user()._id, 'Test message');
+  }
+});
+
+Template.layout.helpers({
+  notifications: function() {
+    if (Meteor.userId()) {
+      return Notifications.find();
+    } else {
+      return [];
+    }
+  }
+})

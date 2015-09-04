@@ -17,5 +17,5 @@ Meteor.publish('teamInvitations', function() {
 
 Meteor.publish('notifications', function() {
   if (this.userId)
-    return Notifications.find({userId: this.userId});
+    return Notifications.find({userId: this.userId}, {sort: {dateTime: -1}, limit: 20});
 });
