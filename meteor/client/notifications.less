@@ -12,26 +12,36 @@
 
 .notifications-wrapper {
   overflow:auto;
-  max-height:250px;
+  max-height:350px;
 }
 
-.dropdown-menu.divider {
-  margin:5px 0;
+.notification-divider {
+  height: 1px;
+  margin: 1px 0;
+  font-size:0.5em;
+  overflow: hidden;
+  background-color: #e5e5e5;
 }
 
 .item-title {
-  font-size:1.3rem;
+  font-size:1em;
   color:#000;
 }
 
-.notifications a.content {
+.notification-content {
   text-decoration:none;
   /*background:#ccc;*/
+  margin: 0 0 6px;
+}
+
+.notifications-wrapper p.item-info {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .notification-item {
-  padding:10px;
-  margin:5px;
+  padding:0px 10px;
+  margin:0px 5px;
   /*background:#ccc;*/
   border-radius:4px;
 }

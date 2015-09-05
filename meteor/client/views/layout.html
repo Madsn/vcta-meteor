@@ -36,13 +36,13 @@
                 <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
                   <div class="notifications-wrapper">
                     {{#each notifications}}
-                    <p class="content" href="#">
+                    <p class="notification-content">
                       <div class="notification-item">
                         <h4 class="item-title">{{timeAgo}}</h4>
                         <p class="item-info">{{message}}</p>
                       </div>
                     </p>
-                    <li class="divider"></li>
+                    <li class="notification-divider"></li>
                     {{/each}}
                   </div>
                 </ul>
