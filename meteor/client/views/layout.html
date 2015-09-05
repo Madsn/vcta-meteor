@@ -34,7 +34,7 @@
                   </div>
                 </a>
                 <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                  <div class="notifications-wrapper">
+                  <div id="notifications" class="notifications-wrapper">
                     {{#each notifications}}
                     <p class="notification-content">
                       <div class="notification-item">
@@ -74,6 +74,9 @@
             $(this).collapse('hide');
           }
         }
+      });
+      $(function(){
+        $('#notifications').slimScroll();
       });
     </script>
   </body>
