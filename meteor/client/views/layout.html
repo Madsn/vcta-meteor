@@ -24,14 +24,12 @@
               <li class="{{isActiveRoute 'rules'}}"><a href="/rules">Rules</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              {{#if currentUser}}
               <li>
-                <a class="dropdown">
-                    <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
-                      <i class="glyphicon glyphicon-bell"></i>
-                    </a>
+                  <a id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+                    <i class="glyphicon glyphicon-bell notifications-icon"></i>
+                  </a>
                   <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-
-                    <li class="divider"></li>
                     <div class="notifications-wrapper">
                       {{#each notifications}}
                       <p class="content" href="#">
@@ -40,12 +38,12 @@
                           <p class="item-info">{{message}}</p>
                         </div>
                       </p>
+                      <li class="divider"></li>
                       {{/each}}
                     </div>
-                    <li class="divider"></li>
                   </ul>
-                </a>
               </li>
+              {{/if}}
               {{> loginButtons}}
             </ul>
           </div>
