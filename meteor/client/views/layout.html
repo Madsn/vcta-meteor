@@ -26,22 +26,26 @@
             <ul class="nav navbar-nav navbar-right">
               {{#if currentUser}}
               <li>
-                  <a id="dLabel" role="button" data-toggle="dropdown" data-target="#">
-                    <i class="glyphicon glyphicon-bell notifications-icon"></i>
-                  </a>
-                  <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                    <div class="notifications-wrapper">
-                      {{#each notifications}}
-                      <p class="content" href="#">
-                        <div class="notification-item">
-                          <h4 class="item-title">{{timeAgo}}</h4>
-                          <p class="item-info">{{message}}</p>
-                        </div>
-                      </p>
-                      <li class="divider"></li>
-                      {{/each}}
-                    </div>
-                  </ul>
+                <a id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+                  <div class="notifications-icon">
+                    {{#notificationBadge count=notifications.count}}
+                      <i class="glyphicon glyphicon-bell"></i>
+                    {{/notificationBadge}}
+                  </div>
+                </a>
+                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                  <div class="notifications-wrapper">
+                    {{#each notifications}}
+                    <p class="content" href="#">
+                      <div class="notification-item">
+                        <h4 class="item-title">{{timeAgo}}</h4>
+                        <p class="item-info">{{message}}</p>
+                      </div>
+                    </p>
+                    <li class="divider"></li>
+                    {{/each}}
+                  </div>
+                </ul>
               </li>
               {{/if}}
               {{> loginButtons}}
